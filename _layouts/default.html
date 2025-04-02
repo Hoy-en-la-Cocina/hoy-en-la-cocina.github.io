@@ -82,19 +82,28 @@
 
 <script>
   var ingredient_dict={
-    egg:[3190/12.0,155],
+    // Count
+    egg:[3190/12.0,155], 
+    // Count
+    egg_white:[3190/12.0,17],
+    // Count
+    egg_yolk:[3190/12.0,55],
+    // Serving
     fettucine:[990/5.0,270],
-    parmesan:[4250/5.0,95],
-    bacon:[3190/5.0,50],
-    garlic:[1090/15.0,25]
+    // Gram
+    parmesan:[4250/145.0,94.8*5/145.0],
+    // Count
+    bacon_thin:[3190/15.0,50],
+    // Teeth
+    garlic:[1090/27,12.4]
   };
 
   var carbonara={
-    egg:2,
+    egg_yolk:2,
     fettucine:1,
-    parmesan:1,
-    bacon:1,
-    garlic:1
+    parmesan:30,
+    bacon_thin:3,
+    garlic:2
   };
 
   var egg ={
@@ -114,7 +123,7 @@
   }
   function show_results(dish, html_id, name) {
     let results = get_sums(dish, ingredient_dict);
-    document.getElementById(html_id).innerHTML = `${name} : $${results.price.toFixed(0)} :  ${results.cals} cal`;
+    document.getElementById(html_id).innerHTML = `${name} : $${results.price.toFixed(0)} :  ${results.cals.toFixed(0)} cal`;
   }
 
   show_results(carbonara, "carbonara", "(Almost) Carbonara")
