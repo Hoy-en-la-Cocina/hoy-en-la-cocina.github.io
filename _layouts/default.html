@@ -109,6 +109,6 @@ function get_sums(dish, ingredients) {
 }
 
 let carbonara_values = get_sums(carbonara, ingredient_dict);
-document.getElementById("carbonara").innerHTML = `(Almost) Carbonara: $${carbonara_values.price.toFixed(3)} :  ${carbonara_values.cals} cal`;
+document.getElementById("carbonara").innerHTML = `(Almost) Carbonara: $${carbonara_values.price.toFixed(0)} :  ${carbonara_values.cals} cal`;
 </script>
 </html>
