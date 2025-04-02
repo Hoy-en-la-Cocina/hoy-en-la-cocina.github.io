@@ -137,7 +137,7 @@
       calsum += ingredients[key][1] * dish[key];
     };
 
-    return {price:pricesum/net, cals:calsum/net};
+    return {price:pricesum*net, cals:calsum*net};
   }
   function show_results(dish, net, html_id, name) {
     let results = get_sums(dish, ingredient_dict, net);
