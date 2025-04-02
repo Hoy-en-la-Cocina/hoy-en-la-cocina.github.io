@@ -56,8 +56,11 @@
 
 
       <section id="main_content">
+        <p><b style="font-size:36px;">PASTA</b></p>
         <p id="carbonara"></p>
         <p id="roasted pepper"></p>
+        <p><b style="font-size:36px;">OTHER</b></p>
+        <p id="gumbo"></p>
         <p id="egg"></p>
       </section>
 
@@ -102,7 +105,21 @@
     // Count
     red_pepper:[1690,40],
     // Grams
-    pistaccios:[2350/80.0, 600/100.0],
+    pistaccio:[2350/80.0, 600/100.0],
+    // Count
+    tomato:[1075/2.5, 22],
+    // Count
+    onion:[775/1.2,44],
+    // Grams
+    flour:[1000/1000.0, 340/100],
+    // Count
+    longaniza:[6190/4.0, 257.5*2],
+    // Grams, unit is 500 grams
+    shrimp_large:[7990/500.0, 68/100.0],
+    // Grams, one thing is 1500 grams
+    celery:[1390/1500.0,16/100.0],
+    // Cups
+    rice_white:[2690/5.0, 167.5/0.25]
   };
 
   //Can make per order
@@ -117,9 +134,20 @@
   // Make jar of sauce
   var roasted_pepper_sauce={
     red_pepper:1,
-    pistaccios:80,
+    pistaccio:80,
     olive_oil:15,
     garlic:4,
+  };
+
+  var gumbo={
+    red_pepper:2,
+    onion:1,
+    celery:400,
+    flour:100,
+    olive_oil:20,
+    longaniza:4,
+    shirmp_large:500,
+    rice_white:0.25*5
   };
 
   // Egg
@@ -146,6 +174,7 @@
 
   show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
   show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
+  show_results(gumbo, 1/5.0, "gumbo", "Gumbo")
   show_results(egg, 1, "egg", "Egg")
 
 </script>
