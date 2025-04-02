@@ -57,6 +57,7 @@
 
       <section id="main_content">
         <p id="carbonara"></p>
+        <p id="roasted pepper"></p>
         <p id="egg"></p>
       </section>
 
@@ -95,9 +96,16 @@
     // Count
     bacon_thin:[3190/15.0,50],
     // Teeth
-    garlic:[1090/27,12.4]
+    garlic:[1090/27.0,12.4],
+    // Milliliters
+    olive_oil:[13850/1000.0,8210/1000.0],
+    // Count
+    red_pepper:[1690:40],
+    // Grams
+    pistaccios:[2350/80.0, 600/100.0],
   };
 
+  //Can make per order
   var carbonara={
     egg_yolk:2,
     fettucine:1,
@@ -106,12 +114,22 @@
     garlic:2
   };
 
+  // Make jar of sauce
+  var roasted_pepper_sauce={
+    red_pepper:1,
+    pistaccios:80,
+    olive_oil:15,
+    garlic:4,
+  };
+
+  // Egg
   var egg ={
     egg:1
   }
 
+  
 
-  function get_sums(dish, ingredients) {
+  function get_sums(dish, ingredients, net) {
     var pricesum = 0;
     var calsum = 0;
     for (let key in dish) {
@@ -119,15 +137,16 @@
       calsum += ingredients[key][1] * dish[key];
     };
 
-    return {price:pricesum, cals:calsum};
+    return {price:pricesum/net, cals:calsum/net};
   }
-  function show_results(dish, html_id, name) {
-    let results = get_sums(dish, ingredient_dict);
+  function show_results(dish, net, html_id, name) {
+    let results = get_sums(dish, ingredient_dict, net);
     document.getElementById(html_id).innerHTML = `${name} : $${results.price.toFixed(0)} :  ${results.cals.toFixed(0)} cal`;
   }
 
-  show_results(carbonara, "carbonara", "(Almost) Carbonara")
-  show_results(egg, "egg", "Egg")
+  show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
+  show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
+  show_results(egg, 1, "egg", "Egg")
 
 </script>
 </html>
