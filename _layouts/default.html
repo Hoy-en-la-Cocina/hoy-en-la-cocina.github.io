@@ -57,6 +57,7 @@
 
       <section id="main_content">
         <p id="carbonara"></p>
+        <p id="egg"></p>
       </section>
 
       <footer>
@@ -96,19 +97,28 @@
     garlic:1
   };
 
+  var egg ={
+    egg:1
+  }
 
-function get_sums(dish, ingredients) {
-  var pricesum = 0;
-  var calsum = 0;
-  for (let key in dish) {
-    pricesum += ingredients[key][0] * dish[key];
-    calsum += ingredients[key][1] * dish[key];
-  };
 
-  return {price:pricesum, cals:calsum};
-}
+  function get_sums(dish, ingredients) {
+    var pricesum = 0;
+    var calsum = 0;
+    for (let key in dish) {
+      pricesum += ingredients[key][0] * dish[key];
+      calsum += ingredients[key][1] * dish[key];
+    };
 
-let carbonara_values = get_sums(carbonara, ingredient_dict);
-document.getElementById("carbonara").innerHTML = `(Almost) Carbonara: $${carbonara_values.price.toFixed(0)} :  ${carbonara_values.cals} cal`;
+    return {price:pricesum, cals:calsum};
+  }
+  function show_results(dish, html_id, name) {
+    let results = get_sums(dish, ingredient_dict);
+    document.getElementById(html_id).innerHTML = `${name} : $${results.price.toFixed(0)} :  ${results.cals} cal`;
+  }
+
+  show_results(carbonara, "carbonara", "(Almost) Carbonara")
+  show_results(egg, "egg", "Egg"
+
 </script>
 </html>
