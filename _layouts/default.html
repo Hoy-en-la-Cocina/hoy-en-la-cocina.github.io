@@ -61,6 +61,7 @@
         <p><b style="font-size:36px;">PASTA</b></p>
         <p id="carbonara"></p>
         <p id="roasted pepper"></p>
+        <p id="putanesca"></p>
         <p><b style="font-size:36px;">OTHER</b></p>
         <p id="gumbo"></p>
         <p id="egg"></p>
@@ -113,8 +114,16 @@
     shrimp_large:[7990/500.0, 68/100.0],
     // Grams, one thing is 1500 grams
     celery:[1390/1500.0,16/100.0],
-    // Cups
-    rice_white:[2690/5.0, 167.5/0.25]
+    // Cups, serving is like 1/4 cup
+    rice_white:[2690/5.0, 167.5/0.25],
+    // Grams, one thing is 240 grams
+    capers:[2990/240.0,34/100.0],
+    // Grams, one thing is 380 grams
+    tomatos_canned:[1750/380.0,22/100.0],
+    // Grams, one thing is 240 grams
+    anchovies:[6890/240.0,175/100.0],
+    // Grams, one thing is 200 grams
+    olives_black:[1890/200.0, 239/100.0],
   };
 
   //Can make per order
@@ -132,8 +141,9 @@
     pistaccio:80,
     olive_oil:15,
     garlic:4,
+    fettucine:1,
   };
-
+  // Make whole pot
   var gumbo={
     red_pepper:2,
     onion:1,
@@ -143,6 +153,16 @@
     longaniza:4,
     shrimp_large:500,
     rice_white:0.25*5
+  };
+  // Can be per order
+  var putanesca={
+    garlic:1,
+    capers:12,
+    olives_black:40,
+    anchovies:40,
+    tomatos_canned:380,
+    olive_oil:15,
+    fettucine:1
   };
 
   // Egg
@@ -164,13 +184,14 @@
   }
   function show_results(dish, net, html_id, name) {
     let results = get_sums(dish, ingredient_dict, net);
-    document.getElementById(html_id).innerHTML = `${name} : $${results.price.toFixed(0)} :  ${results.cals.toFixed(0)} cal`;
+    document.getElementById(html_id).innerHTML = `${name} | $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal`;
   }
 
   show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
   show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
   show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
   show_results(egg, 1, "egg", "Egg")
+  show_results(putanesca, 1, "putanesca", "Putanesca")
 
 </script>
 </html>
