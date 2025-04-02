@@ -56,7 +56,7 @@
 
 
       <section id="main_content">
-        {{ content }}
+        <p id="carbonara"></p>
       </section>
 
       <footer>
@@ -78,4 +78,37 @@
 
     </div>
   </body>
+
+<script>
+  var ingredient_dict={
+    egg:[3190/12.0,155],
+    fettucine:[990/5.0,270],
+    parmesan:[4250/5.0,95],
+    bacon:[3190/5.0,50],
+    garlic:[1090/15.0,25]
+  };
+
+  var carbonara={
+    egg:2,
+    fettucine:1,
+    parmesan:1,
+    bacon:1,
+    garlic:1
+  };
+
+
+function get_sums(dish, ingredients) {
+  var pricesum = 0;
+  var calsum = 0;
+  for (let key in dish) {
+    pricesum += ingredients[key][0] * dish[key];
+    calsum += ingredients[key][1] * dish[key];
+  };
+
+  return {price:pricesum, cals:calsum};
+}
+
+let carbonara_values = get_sums(carbonara, ingredient_dict);
+document.getElementById("carbonara").innerHTML = `(Almost) Carbonara: $${carbonara_values.price.toFixed(3)} :  ${carbonara_values.cals} cal`;
+</script>
 </html>
