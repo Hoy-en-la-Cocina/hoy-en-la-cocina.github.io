@@ -26,6 +26,10 @@
 {% include head-custom.html %}
     <style>
       /* The box that appears */
+      body {
+            text-align: center;
+            margin: 50px;
+        }
         .box {
             display: none; /* Initially hidden */
             position: fixed;
@@ -84,6 +88,7 @@
 
 
       <section id="main_content">
+        <button onclick="showBox()">Show Box</button>
         <div id="popupBox" class="box">
         This is a floating box!
         <br>
