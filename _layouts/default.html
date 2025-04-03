@@ -186,7 +186,7 @@
   }
   function show_results(dish, net, html_id, name) {
     let results = get_sums(dish, ingredient_dict, net);
-    document.getElementById(html_id).innerHTML = `${name} | $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal`;
+    document.getElementById(html_id).innerHTML = `${name} <br>| $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal |`;
   }
 
   show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
