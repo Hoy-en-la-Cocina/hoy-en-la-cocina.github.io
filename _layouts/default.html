@@ -93,7 +93,7 @@
           <button onclick="showBox2()">Button 2</button>
         </div>
         <div id="popupBox" class="box">
-        This is a floating box! I am making this arbitrarily long to test the behavior of this box, otherwise I'll have to do stuff.
+        <div id="boxtext"></div>
         <br>
         <button class="close-btn" onclick="hideBox()">Close</button>
     </div>
@@ -238,11 +238,11 @@
 
   function showBox1() {
     document.getElementById("popupBox").style.display = "block";
-    document.getElementById("popupBox").innerHTML = "You clicked button one you stupid idiot";
+    document.getElementById("boxtext").innerHTML = "You clicked button one you stupid idiot";
   }
   function showBox2() {
     document.getElementById("popupBox").style.display = "block";
-    document.getElementById("popupBox").innerHTML = "You clicked button two you goddamn genius";
+    document.getElementById("boxtext").innerHTML = "You clicked button two you goddamn genius";
   }
 
   function hideBox() {
