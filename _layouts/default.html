@@ -89,8 +89,8 @@
 
       <section id="main_content">
         <div style="display: flex; justify-content: center; gap: 10px;">
-          <button onclick="showBox()">Button 1</button>
-          <button onclick="showBox()">Button 2</button>
+          <button onclick="showBox1()">Button 1</button>
+          <button onclick="showBox2()">Button 2</button>
         </div>
         <div id="popupBox" class="box">
         This is a floating box! I am making this arbitrarily long to test the behavior of this box, otherwise I'll have to do stuff.
@@ -237,9 +237,11 @@
   show_results(putanesca, 1, "putanesca", "Putanesca")
 
   function showBox1() {
+    document.getElementById("popupBox").style.display = "block";
     document.getElementById("popupBox").innerHTML = "You clicked button one you stupid idiot";
   }
   function showBox2() {
+    document.getElementById("popupBox").style.display = "block";
     document.getElementById("popupBox").innerHTML = "You clicked button two you goddamn genius";
   }
 
