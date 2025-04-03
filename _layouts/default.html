@@ -24,6 +24,39 @@
 {% seo %}
 
 {% include head-custom.html %}
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        /* The box that appears */
+        .box {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Close button inside the box */
+        .close-btn {
+            cursor: pointer;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
   </head>
 
   <body>
@@ -58,6 +91,11 @@
 
 
       <section id="main_content">
+        <div id="popupBox" class="box">
+        This is a floating box!
+        <br>
+        <button class="close-btn" onclick="hideBox()">Close</button>
+    </div>
         <p><b style="font-size:36px;">PASTA</b></p>
         <p id="carbonara"></p>
         <p id="roasted pepper"></p>
@@ -194,6 +232,14 @@
   show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
   show_results(egg, 1, "egg", "Egg")
   show_results(putanesca, 1, "putanesca", "Putanesca")
+
+  function showBox() {
+    document.getElementById("popupBox").style.display = "block";
+  }
+
+  function hideBox() {
+    document.getElementById("popupBox").style.display = "none";
+  }
 
 </script>
 </html>
