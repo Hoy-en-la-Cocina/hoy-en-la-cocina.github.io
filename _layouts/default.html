@@ -106,7 +106,7 @@
       <footer>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
-              <p>there is no rat hiding in my hair doing the cooking stop asking</p>
+              <p id="random"></p>
           </span>
           <span class="left-tail"></span>
           <span class="right-tail"></span>
@@ -225,6 +225,8 @@
     document.getElementById(html_id).innerHTML = `${name} <br>| $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal |`;
   }
 
+  
+
   show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
   show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
   show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
@@ -239,5 +241,16 @@
     document.getElementById("popupBox").style.display = "none";
   }
 
+  function getRandomEntry(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+  const messagelist = ["there is no rat hiding in my hair doing the cooking stop asking",
+                      "my name is not and never has been Hevin Hichael Hoy",
+                      "food tastes better if you believe in ghosts",
+                      "personally, I wouldn't trust me but I appreciate the sentiment",
+                      "look, austria-hungary was dissolved like 100 years ago, but hear me out...",
+                      ];
+  document.getElementbyId("random").innerHTML = getRandomEntry(messagelist); // Random fruit from the list
+  
 </script>
 </html>
