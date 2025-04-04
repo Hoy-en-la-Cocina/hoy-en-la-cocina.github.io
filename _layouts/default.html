@@ -94,10 +94,12 @@
         <button class="close-btn" onclick="hideBox()">Close</button>
     </div>
         <p><b style="font-size:36px;">PASTA</b></p>
-        <p id="carbonara"></p>
-        <div style="display: flex; justify-content: center; gap: 10px;">
-          <button onclick="showBox(0,'carbonara')">Description</button>
-          <button onclick="showBox(1,'carbonara')">Add to Order</button>
+        <div style="display: inline-block; border: 2px solid black; padding: 5px;">
+          <p id="carbonara"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button onclick="showBox(0,'carbonara')">Description</button>
+            <button onclick="showBox(1,'carbonara')">Add to Order</button>
+          </div>
         </div>
         <p id="roasted pepper"></p>
         <div style="display: flex; justify-content: center; gap: 10px;">
@@ -287,16 +289,25 @@
     return arr[Math.floor(Math.random() * arr.length)];
   }
   const messagelist = ["there is no rat hiding in my hair doing the cooking stop asking",
-                      "my name is not and never has been mevin michael moy",
-                      "food tastes better if you believe in ghosts",
-                      "personally, I wouldn't trust me but I appreciate the sentiment",
-                      "look, austria-hungary was dissolved like 100 years ago, but hear me out...",
-                      "he who has stolen from the wizards has earned the nat 20 fireball",
-                      "looking at the sun is a good idea",
-                      "human beings weren't meant to be able to see the moon",
-                      "i once saw a man in a gorilla suit dancing in the middle of the street and it changed me",
-                      "could you imagine what would happen if brian stevenson didn't do that one thing",
-                      "pink is not a real color and i will drown in pepto bismol on that hill",
+                       "my name is not and never has been mevin michael moy",
+                       "food tastes better if you believe in ghosts",
+                       "personally, I wouldn't trust me but I appreciate the sentiment",
+                       "look, austria-hungary was dissolved like 100 years ago, but hear me out...",
+                       "he who has stolen from the wizards has earned the nat 20 fireball",
+                       "looking at the sun is a good idea",
+                       "human beings weren't meant to be able to see the moon",
+                       "i once saw a man in a gorilla suit dancing in the middle of the street and it changed me",
+                       "could you imagine what would happen if brian stevenson didn't do that one thing",
+                       "pink is not a real color and i will drown in pepto bismol on that hill",
+                       "when the going gets tough i grab a beer",
+                       "i don't believe the official story about the mariana trench",
+                       "please don't leave me i can't escape this ribbon",
+                       "in some cultures, 3*3 could be 10",
+                       "i could beat batman in a fight if i went all out",
+                       "cheese is literally goblin magic",
+                       "if apples grew on trees they'd be cheaper",
+                       "i've never met a sandwich too large to finish in one go",
+                       "if i could erase one person from existence it would probably be whoever ended myspace",
                       ];
   document.getElementById("random").innerHTML = getRandomEntry(messagelist); // Random fruit from the list
   
