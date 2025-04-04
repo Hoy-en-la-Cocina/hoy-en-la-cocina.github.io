@@ -88,10 +88,6 @@
 
 
       <section id="main_content">
-        <div style="display: flex; justify-content: center; gap: 10px;">
-          <button onclick="showBox(0)">Button 1</button>
-          <button onclick="showBox(1)">Button 2</button>
-        </div>
         <div id="popupBox" class="box">
         <div id="boxtext"></div>
         <br>
@@ -99,11 +95,31 @@
     </div>
         <p><b style="font-size:36px;">PASTA</b></p>
         <p id="carbonara"></p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <button onclick="showBox(0,'carbonara')">Description</button>
+          <button onclick="showBox(1,'carbonara')">Add to Order</button>
+        </div>
         <p id="roasted pepper"></p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <button onclick="showBox(0, 'roasted pepper')">Description</button>
+          <button onclick="showBox(1, 'roasted pepper')">Add to Order</button>
+        </div>
         <p id="putanesca"></p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <button onclick="showBox(0, 'putanesca')">Description</button>
+          <button onclick="showBox(1, 'putanesca')">Add to Order</button>
+        </div>
         <p><b style="font-size:36px;">OTHER</b></p>
         <p id="gumbo"></p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <button onclick="showBox(0, 'gumbo')">Description</button>
+          <button onclick="showBox(1, 'gumbo')">Add to Order</button>
+        </div>
         <p id="egg"></p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <button onclick="showBox(0, 'egg')">Description</button>
+          <button onclick="showBox(1, 'egg')">Add to Order</button>
+        </div>
       </section>
 
       <footer>
@@ -236,12 +252,30 @@
   show_results(egg, 1, "egg", "Egg")
   show_results(putanesca, 1, "putanesca", "Putanesca")
 
-  function showBox(argument) {
+  function showBox(mode, dish) {
     document.getElementById("popupBox").style.display = "block";
-    if (argument == 0) {
-      document.getElementById("boxtext").innerHTML = "You clicked button one you stupid idiot";
+    if (mode == 0) {
+      if (dish == 'carbonara') {
+        document.getElementById("boxtext").innerHTML = `Pasta dish with bacon (traditionally guanciale, hence 'almost') and cheese sauce. 
+          The sauce is made by whipping egg yolks & parmesan with the rendered fat of the bacon, giving it really smooth and creamy texture.`;
+      } else if (dish == 'roasted pepper') {
+        document.getElementById("boxtext").innerHTML = `They sell a similar sauce to this in supermarkets in Italy, 
+        one of the favorite things I tried there. Very simple and light.`;
+      } else if (dish == 'putanesca') {
+        document.getElementById("boxtext").innerHTML = `Kitchen sink pasta. Tomato sauce with garlic, anchovies, red pepper, olives, and capers.
+        Complex and delicious.`;
+      } else if (dish == 'gumbo') {
+        document.getElementById("boxtext").innerHTML = `Cajun stew made with a very dark roux base and the 'holy trinity' of cajun cooking (onion,
+        red pepper, celery). While meat additions vary, this recipe uses large shrimp and seared longaniza.`;
+      } else if (dish == 'egg') {
+        document.getElementById("boxtext").innerHTML = `It's just an egg. Like literally one of those white spheroidal things. I will not cook it or alter it in any way.
+        I will hand a single egg if you ask me to. I have no clue why you would order this.`;
+      } else if (dish == 'buffalo wings') {
+        document.getElementById("boxtext").innerHTML = `KING OF THE GRINGO FOODS. Buttery hot sauce over oven-fried chicken wings. 
+        Nutritional value was not of great concern when writing this recipe. Very messy. Despite this, easily a 10/10 top food.`;
+      }
     } else {
-      document.getElementById("boxtext").innerHTML = "You clicked button two you goddamn genius";
+      document.getElementById("boxtext").innerHTML = "This doesn't do anything yet lmao";
     }
   }
 
