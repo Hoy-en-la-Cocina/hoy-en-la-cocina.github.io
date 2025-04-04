@@ -132,6 +132,13 @@
             <button onclick="showBox(1, 'gumbo')">Add to Order</button>
           </div>
         </div>
+        <div class="fancy-border" style="border-bottom: none;">
+        <p id="buffalo wings"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button onclick="showBox(0, 'buffalo wings')">Description</button>
+            <button onclick="showBox(1, 'buffalo wings')">Add to Order</button>
+          </div>
+        </div>
         <div class="fancy-border">
           <p id="egg"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
@@ -199,6 +206,16 @@
     anchovies:[6890/240.0,175/100.0],
     // Grams, one thing is 200 grams
     olives_black:[1890/200.0, 239/100.0],
+    // Count
+    wings_flats:[4190/24.0, 140.8/3],
+    // Grams, one thing is 250 grams
+    hot_sauce_hot:[2290/250, 19/100.0],
+    // Grams, one thing is 250 grams,
+    hot_sauce_mild:[1990/250,80/100.0],
+    // Grams, one thing is 250,
+    butter:[2950/250, 740/100],
+    // Pesos, just for adding to the price for spices i don't care to do the math for
+    misc:[1, 0]
   };
 
   //Can make per order
@@ -240,6 +257,14 @@
     fettucine:1
   };
 
+  // Can be per order
+  var buffalo_wings={
+    wings_flats:8,
+    hot_sauce_hot:30,
+    butter:15,
+    misc:300
+  }
+
   // Egg
   var egg ={
     egg:1
@@ -271,6 +296,7 @@
   show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
   show_results(egg, 1, "egg", "Egg")
   show_results(putanesca, 1, "putanesca", "Putanesca")
+  show_results(buffalo_wings,1,"buffalo wings", "Buffalo Wings")
 
   function showBox(mode, dish) {
     document.getElementById("popupBox").style.display = "block";
@@ -326,6 +352,10 @@
                        "if apples grew on trees they'd be cheaper",
                        "i've never met a sandwich too large to finish in one go",
                        "if i could erase one person from existence it would probably be whoever ended myspace",
+                       "every good story ends with changing the name of constantinople",
+                       "we're talking away. i don't know what i'm to say. i'll say it anyway",
+                       "singing in the rain is vastly overrated",
+                       "huge fan of turnips here, love those lil guys"
                       ];
   document.getElementById("random").innerHTML = getRandomEntry(messagelist); // Random fruit from the list
   
