@@ -103,16 +103,29 @@
 
         <p><b style="font-size:36px;">BREAKFAST</b></p>
         
-        <div class="fancy-border";">
+        <div class="fancy-border" style="border-bottom: none;">
           <p id="french toast"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
             <button onclick="showBox(0,'french toast')">Description</button>
             <button onclick="showBox(1,'french toast')">Add to Order</button>
           </div>
         </div>
+        <div class="fancy-border" style="border-bottom: none;">
+          <p id="fried egg"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button onclick="showBox(0, 'fried egg')">Description</button>
+            <button onclick="showBox(1, 'fried egg')">Add to Order</button>
+          </div>
+        </div>
+        <div class="fancy-border">
+          <p id="bacon"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button onclick="showBox(0, 'bacon')">Description</button>
+            <button onclick="showBox(1, 'bacon')">Add to Order</button>
+          </div>
+        </div>
         
         <p><b style="font-size:36px;">PASTA</b></p>
-        
         <div class="fancy-border" style="border-bottom: none;">
           <p id="carbonara"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
@@ -294,6 +307,17 @@
     syrup_gringo:20
   }
 
+  // Can be per order
+  var egg_fried={
+    egg:1,
+    olive_oil:10
+  }
+
+  // Can be per order
+  var bacon={
+    bacon:1
+  }
+  
   // Egg
   var egg ={
     egg:1
@@ -327,6 +351,8 @@
   show_results(putanesca, 1, "putanesca", "Putanesca")
   show_results(buffalo_wings,1,"buffalo wings", "Buffalo Wings")
   show_results(french_toast,1,"french toast", "Marraqueta French Toast Sticks")
+  show_results(egg_fried,1,"fried egg", "Fried Egg")
+  show_results(bacon,1,"bacon", "Strip of Bacon")
 
   function showBox(mode, dish) {
     document.getElementById("popupBox").style.display = "block";
@@ -352,7 +378,10 @@
       } else if (dish == 'french toast') {
         document.getElementById("boxtext").innerHTML = `Crusty old marraqueta dipped in batter and cooked in a pan. Moist and sweet and cinnamony. 
         Comes with maple syrup, the cheap gringo variety is best (more options potentially coming soon).`
-      }
+      } else if (dish == 'fried egg') {
+        document.getElementById("boxtext").innerHTML = `Open up da egg put da egg in da pan add da salt add da peppa put in mouth`
+      } else if (dish == 'bacon') {
+        document.getElementById("boxtext").innerHTML = `It's bacon`
     } else {
       document.getElementById("boxtext").innerHTML = "This doesn't do anything yet lmao";
     }
