@@ -100,6 +100,16 @@
         <br>
         <button class="close-btn" onclick="hideBox()">Close</button>
     </div>
+
+        <p><b style="font-size:36px;">BREAKFAST</b></p>
+        
+        <div class="fancy-border" style="border-bottom: none;">
+          <p id="french toast"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button onclick="showBox(0,'french toast')">Description</button>
+            <button onclick="showBox(1,'french toast')">Add to Order</button>
+          </div>
+        </div>
         
         <p><b style="font-size:36px;">PASTA</b></p>
         
@@ -215,7 +225,17 @@
     // Grams, one thing is 250,
     butter:[2950/250, 740/100],
     // Pesos, just for adding to the price for spices i don't care to do the math for
-    misc:[1, 0]
+    misc:[1, 0],
+    // Grams, one thing is 1 kg
+    flour:[1000/1000.0, 340/100.0],
+    // Grams, one thing is 1 kg
+    sugar:[1250/1000.0, 400/100.0],
+    // Cups, one thing is 4.22 cups
+    milk:[1000/4.22,59/118.0],
+    // Count, remember 1 is half a thing
+    marraqueta:[200, 268],
+    // milliliters, one thing is 710
+    syrup_gringo:[3490/710.0,333/100]
   };
 
   //Can make per order
@@ -262,7 +282,18 @@
     wings_flats:8,
     hot_sauce_hot:30,
     butter:15,
-    misc:300
+    misc:300,
+    flour:20,
+  }
+
+  // Can be per order
+  var french_toast={
+    marraqueta:1,
+    egg:1,
+    milk:1/6.0,
+    flour:15/2.0,
+    sugar:25/2.0,
+    syrup:20
   }
 
   // Egg
@@ -297,6 +328,7 @@
   show_results(egg, 1, "egg", "Egg")
   show_results(putanesca, 1, "putanesca", "Putanesca")
   show_results(buffalo_wings,1,"buffalo wings", "Buffalo Wings")
+  show_results(french_toast,1,"french toast", "Marraqueta French Toast Sticks
 
   function showBox(mode, dish) {
     document.getElementById("popupBox").style.display = "block";
@@ -319,6 +351,9 @@
       } else if (dish == 'buffalo wings') {
         document.getElementById("boxtext").innerHTML = `KING OF THE GRINGO FOODS. Buttery hot sauce over air-fried chicken wings. 
         Nutritional value was not of great concern when writing this recipe. Very messy. Easily a 10/10 top food.`;
+      } else if (dish == 'french toast') {
+        document.getElementById("boxtext").innerHTML = `Crusty old marraqueta dipped in batter and cooked in a pan. Moist and sweet and cinnamony. 
+        Comes with maple syrup, the cheap gringo variety is best (more options potentially coming soon).`
       }
     } else {
       document.getElementById("boxtext").innerHTML = "This doesn't do anything yet lmao";
@@ -360,6 +395,7 @@
                        "never buy what you can convince a crow to steal for you",
                        "*that one drum part from in the air tonight by phil collins*",
                        "onions and apples are the same thing if you think about it",
+                       "i'd put tiramisu and cheesecake on here but i'd get fat again eating leftovers",
                       ];
   document.getElementById("random").innerHTML = getRandomEntry(messagelist); // Random fruit from the list
   
