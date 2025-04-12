@@ -587,7 +587,7 @@ const all_dishes = {
         item.className = 'ingredient';
 
         item.innerHTML = `
-          <div class="ingredient-name">${ingredient}</div>
+          <div class="ingredient-name">${ingredient_dict[ingredient]}</div>
           <button onclick="changeCount(${index}, -1)">-</button>
           <div class="counter" id="counter-${index}">0</div>
           <button onclick="changeCount(${index}, 1)">+</button>
