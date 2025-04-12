@@ -187,68 +187,163 @@
   </body>
 
 <script>
-  var ingredient_dict={
-    // Count
-    egg:[3190/12.0,155], 
-    // Count
-    egg_white:[3190/12.0,17],
-    // Count
-    egg_yolk:[3190/12.0,55],
-    // Serving
-    fettucine:[990/5.0,270],
-    // Gram
-    parmesan:[4250/145.0,94.8*5/145.0],
-    // Count
-    bacon_thin:[3190/15.0,50],
-    // Teeth
-    garlic:[1090/27.0,12.4],
-    // Milliliters
-    olive_oil:[13850/1000.0,8210/1000.0],
-    // Count
-    red_pepper:[1690,40],
-    // Grams
-    pistaccio:[2350/80.0, 600/100.0],
-    // Count
-    tomato:[1075/2.5, 22],
-    // Count
-    onion:[775/1.2,44],
-    // Grams
-    flour:[1000/1000.0, 340/100],
-    // Count
-    longaniza:[6190/4.0, 257.5*2],
-    // Grams, unit is 500 grams
-    shrimp_large:[7990/500.0, 68/100.0],
-    // Grams, one thing is 1500 grams
-    celery:[1390/1500.0,16/100.0],
-    // Cups, serving is like 1/4 cup
-    rice_white:[2690/5.0, 167.5/0.25],
-    // Grams, one thing is 240 grams
-    capers:[2990/240.0,34/100.0],
-    // Grams, one thing is 380 grams
-    tomatos_canned:[1750/380.0,22/100.0],
-    // Grams, one thing is 240 grams
-    anchovies:[6890/240.0,175/100.0],
-    // Grams, one thing is 200 grams
-    olives_black:[1890/200.0, 239/100.0],
-    // Count
-    wings_flats:[4190/24.0, 140.8/3],
-    // Grams, one thing is 250 grams
-    hot_sauce_hot:[2290/250, 19/100.0],
-    // Grams, one thing is 250 grams,
-    hot_sauce_mild:[1990/250,80/100.0],
-    // Grams, one thing is 250,
-    butter:[2950/250, 740/100],
-    // Pesos, just for adding to the price for spices i don't care to do the math for
-    misc:[1, 0],
-    // Grams, one thing is 1 kg
-    sugar:[1250/1000.0, 400/100.0],
-    // Cups, one thing is 4.22 cups
-    milk:[1000/4.22,59/118.0],
-    // Count, remember 1 is half a thing
-    marraqueta:[200, 268],
-    // milliliters, one thing is 710
-    syrup_gringo:[3490/710.0,333/100]
-  };
+  var ingredient_dict = {
+  egg: { // Count
+    name: 'Egg',
+    price: 3190 / 12.0,
+    cals: 155
+  },
+  egg_white: { // Count
+    name: 'Egg White',
+    price: 3190 / 12.0,
+    cals: 17
+  },
+  egg_yolk: { // Count
+    name: 'Egg Yolk',
+    price: 3190 / 12.0,
+    cals: 55
+  },
+  fettucine: { // Serving
+    name: 'Fettucine',
+    price: 990 / 5.0,
+    cals: 270
+  },
+  parmesan: { // Grams
+    name: 'Parmesan',
+    price: 4250 / 145.0,
+    cals: 94.8 * 5 / 145.0
+  },
+  bacon_thin: { // Count
+    name: 'Thin Bacon',
+    price: 3190 / 15.0,
+    cals: 50
+  },
+  garlic: { // Teeth
+    name: 'Garlic',
+    price: 1090 / 27.0,
+    cals: 12.4
+  },
+  olive_oil: { // Milliliters
+    name: 'Olive Oil',
+    price: 13850 / 1000.0,
+    cals: 8210 / 1000.0
+  },
+  red_pepper: { // Count
+    name: 'Red Pepper',
+    price: 1690,
+    cals: 40
+  },
+  pistaccio: { // Grams
+    name: 'Piscaccio',
+    price: 2350 / 80.0,
+    cals: 600 / 100.0
+  },
+  tomato: { // Count
+    name: 'Tomato',
+    price: 1075 / 2.5,
+    cals: 22
+  },
+  onion: { // Grams
+    name: 'Onion',
+    price: 775 / 1.2,
+    cals: 44
+  },
+  flour: { // Grams
+    name: 'Flour',
+    price: 1000 / 1000.0,
+    cals: 340 / 100
+  },
+  longaniza: { // Count
+    name: 'Longaniza',
+    price: 6190 / 4.0,
+    cals: 257.5 * 2
+  },
+  shrimp_large: { // Grams, unit is 500 grams
+    name: 'Large Shrimp',
+    price: 7990 / 500.0,
+    cals: 68 / 100.0
+  },
+  celery: { // Grams, one thing is 1500 grams
+    name: 'Celery',
+    price: 1390 / 1500.0,
+    cals: 16 / 100.0
+  },
+  rice_white: { // Cups, serving is like 1/4 cup
+    name: 'White Rice',
+    price: 2690 / 5.0,
+    cals: 167.5 / 0.25
+  },
+  capers: { // Grams, one thing is 240 grams
+    name: 'Capers',
+    price: 2990 / 240.0,
+    cals: 34 / 100.0
+  },
+  tomatos_canned: { // Grams, one thing is 380 grams
+    name: 'Canned Tomatos',
+    price: 1750 / 380.0,
+    cals: 22 / 100.0
+  },
+  anchovies: { // Grams, one thing is 240 grams
+    name: 'anchovies',
+    price: 6890 / 240.0,
+    cals: 175 / 100.0
+  },
+  olives_black: { // Grams, one thing is 200 grams
+    name: 'Black Olives',
+    price: 1890 / 200.0,
+    cals: 239 / 100.0
+  },
+  wings_flats: { // Count
+    name: 'Wings (Flats)',
+    price: 4190 / 24.0,
+    cals: 140.8 / 3
+  },
+  hot_sauce_hot: { // Grams, one thing is 250 grams
+    name: 'Spicy Hot Sauce',
+    price: 2290 / 250,
+    cals: 19 / 100.0
+  },
+  hot_sauce_mild: { // Grams, one thing is 250 grams
+    name: 'Mild Hot Sauce',
+    price: 1990 / 250,
+    cals: 80 / 100.0
+  },
+  butter: { // Grams, one thing is 250 grams
+    name: 'Butter',
+    price: 2950 / 250,
+    cals: 740 / 100
+  },
+  misc: { // Pesos, just for adding to the price for spices i don't care to do the math for
+    name: 'misc',
+    price: 1,
+    cals: 0
+  },
+  sugar: { // Grams, one thing is 1 kg
+    name: 'Sugar',
+    price: 1250 / 1000.0,
+    cals: 400 / 100.0
+  },
+  milk: { // Cups, one thing is 4.22 cups
+    name: 'Milk',
+    price: 1000 / 4.22,
+    cals: 59 / 118.0
+  },
+  marraqueta: { // Count, remember 1 is half a thing
+    name: 'Marraqueta',
+    price: 200,
+    cals: 268
+  },
+  syrup_gringo: { // Milliliters, one thing is 710
+    name: 'Gringo Syrup',
+    price: 3490 / 710.0,
+    cals: 333 / 100
+  },
+  sausage: { //Count
+    name: 'Sausage',
+    price: 1000,
+    cals: 150,
+  },
+};
 
 const all_dishes = {
   // Can make per order
@@ -271,7 +366,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -296,7 +391,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -324,7 +419,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -351,7 +446,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -376,7 +471,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -402,7 +497,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -423,7 +518,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   },
@@ -444,7 +539,7 @@ const all_dishes = {
       coffee: 1
     },
     extras: {
-      bacon: 1,
+      bacon_thin: 1,
       sausage: 1
     }
   }
@@ -458,8 +553,8 @@ const all_dishes = {
     var pricesum = 0;
     var calsum = 0;
     for (let key in dish) {
-      pricesum += ingredients[key][0] * dish[key];
-      calsum += ingredients[key][1] * dish[key];
+      pricesum += ingredients[key].price * dish[key];
+      calsum += ingredients[key].cals * dish[key];
     };
 
     return {price:roundnum(pricesum*net), cals:calsum*net};
@@ -474,16 +569,6 @@ const all_dishes = {
     show_results(dish)
   }
 
-  //show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
-  //show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
-  //show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
-  //show_results(egg, 1, "egg", "Egg")
-  //show_results(putanesca, 1, "putanesca", "Putanesca")
-  //show_results(buffalo_wings,1,"buffalo wings", "Buffalo Wings")
-  //show_results(french_toast,1,"french toast", "Marraqueta French Toast Sticks")
-  //show_results(egg_fried,1,"fried egg", "Fried Egg")
-  //show_results(bacon,1,"bacon", "Strip of Bacon")
-
   function showBox(mode, dish) {
     if (mode == 0) {
       //This is for the DESCRIPTION box
@@ -493,7 +578,7 @@ const all_dishes = {
       //This is for the ADD THINGS box
       //This is for extras
       document.getElementById("addBox").style.display = "block";
-      const ingredients = all_dishes[dish].extras
+      const ingredients = Object.keys(all_dishes[dish].extras);
 
       const listContainer = document.getElementById('ingredients-list');
 
