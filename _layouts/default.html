@@ -60,6 +60,13 @@
           border: 2px solid #7C334F; 
           padding: 5px;
         }
+
+        .ingredient-line {
+          display: flex;
+          align-items: center;
+          gap: 10px; /* space between elements */
+          margin: 5px 0;
+        }
     </style>
   </head>
 
@@ -587,11 +594,13 @@ const all_dishes = {
         item.className = 'ingredient';
 
         item.innerHTML = `
-          <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
-          <button onclick="changeCount(${index}, -1)">-</button>
-          <div class="counter" id="counter-${index}">0</div>
-          <button onclick="changeCount(${index}, 1)">+</button>
-        `;
+            <div class="ingredient-line">
+              <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
+              <button onclick="changeCount(${index}, -1)">-</button>
+              <div class="counter" id="counter-${index}">0</div>
+              <button onclick="changeCount(${index}, 1)">+</button>
+            </div>
+            `;
 
         listContainer.appendChild(item);
       });
