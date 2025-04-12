@@ -95,26 +95,34 @@
 
 
       <section id="main_content">
-        <div id="popupBox" class="box">
+      <div id="popupBox" class="box">
         <div id="boxtext"></div>
         <br>
-        <button class="close-btn" onclick="hideBox()">Close</button>
-    </div>
+        <button class="close-btn" onclick="hidepopBox()">Close</button>
+      </div>
+
+      <div id="addBox" class="box">
+        <h2>Extras</h2>
+          <div id="ingredients-list"></div>
+        <br>
+        <button class="close-btn" onclick="hideaddBox()">Close</button>
+      </div>
+      
 
         <p><b style="font-size:36px;">BREAKFAST</b></p>
         
         <div class="fancy-border" style="border-bottom: none;">
           <p id="french toast"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0,'french toast')">Description</button>
-            <button onclick="showBox(1,'french toast')">Add to Order</button>
+            <button onclick="showBox(0,'french_toast')">Description</button>
+            <button onclick="showBox(1,'french_toast')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border" style="border-bottom: none;">
           <p id="fried egg"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'fried egg')">Description</button>
-            <button onclick="showBox(1, 'fried egg')">Add to Order</button>
+            <button onclick="showBox(0, 'fried_egg')">Description</button>
+            <button onclick="showBox(1, 'fried_egg')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border">
@@ -136,8 +144,8 @@
         <div class="fancy-border" style="border-bottom: none;">
           <p id="roasted pepper"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'roasted pepper')">Description</button>
-            <button onclick="showBox(1, 'roasted pepper')">Add to Order</button>
+            <button onclick="showBox(0, 'roasted_pepper_sauce')">Description</button>
+            <button onclick="showBox(1, 'roasted_pepper_sauce')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border">
@@ -158,8 +166,8 @@
         <div class="fancy-border" style="border-bottom: none;">
         <p id="buffalo wings"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'buffalo wings')">Description</button>
-            <button onclick="showBox(1, 'buffalo wings')">Add to Order</button>
+            <button onclick="showBox(0, 'buffalo_wings')">Description</button>
+            <button onclick="showBox(1, 'buffalo_wings')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border">
@@ -249,79 +257,205 @@
     syrup_gringo:[3490/710.0,333/100]
   };
 
-  //Can make per order
-  var carbonara={
-    egg_yolk:2,
-    fettucine:1,
-    parmesan:30,
-    bacon_thin:3,
-    garlic:2
-  };
+const all_dishes = {
+  // Can make per order
+  carbonara: {
+    shown_name:"(Almost) Carbonara",
+    html_id:'carbonara',
+    description:`Pasta dish with bacon (traditionally guanciale, hence 'almost') and cheese sauce. 
+          The sauce is made by whipping egg yolks & parmesan with the rendered fat of the bacon, giving it a smooth and creamy texture.`,
+    amount: 1,
+    recipe: {
+      egg_yolk: 2,
+      fettucine: 1,
+      parmesan: 30,
+      bacon_thin: 3,
+      garlic: 2
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
 
   // Make jar of sauce
-  var roasted_pepper_sauce={
-    red_pepper:1,
-    pistaccio:80,
-    olive_oil:15,
-    garlic:4,
-    fettucine:5,
-  };
+  roasted_pepper_sauce: {
+    shown_name:"Roasted Red Pepper & Pistaccio Sauce",
+    html_id:'roasted pepper',
+    description:`They sell a similar sauce to this in supermarkets in Italy, 
+        one of my favorite things I tried there. Very simple and light.`,
+    amount: 1/4.0,
+    recipe: {
+      red_pepper: 1,
+      pistaccio: 80,
+      olive_oil: 15,
+      garlic: 4,
+      fettucine: 5
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
+
   // Make whole pot
-  var gumbo={
-    red_pepper:2,
-    onion:1,
-    celery:400,
-    flour:100,
-    olive_oil:20,
-    longaniza:4,
-    shrimp_large:500,
-    rice_white:0.25*5
-  };
-  // Can be per order
-  var putanesca={
-    garlic:1,
-    capers:12,
-    olives_black:40,
-    anchovies:40,
-    tomatos_canned:380,
-    olive_oil:15,
-    fettucine:1
-  };
+  gumbo: {
+    shown_name:"Shrimp & Sausage Gumbo",
+    html_id:'gumbo',
+    description:`Cajun stew made with a very dark roux base and the 'holy trinity' of cajun cooking (onion,
+        red pepper, celery). While meat additions vary, this recipe uses large shrimp and seared longaniza.`,
+    amount: 1/5.0,
+    recipe: {
+      red_pepper: 2,
+      onion: 1,
+      celery: 400,
+      flour: 100,
+      olive_oil: 20,
+      longaniza: 4,
+      shrimp_large: 500,
+      rice_white: 0.25 * 5
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
 
   // Can be per order
-  var buffalo_wings={
-    wings_flats:8,
-    hot_sauce_hot:30,
-    butter:15,
-    misc:300,
-    flour:20,
-  }
+  putanesca: {
+    shown_name:"Putanesca",
+    html_id:'putanesca',
+    description:`Kitchen sink pasta. Tomato sauce with garlic, anchovies, red pepper, olives, and capers.
+        Complex and delicious.`,
+    amount: 1,
+    recipe: {
+      garlic: 1,
+      capers: 12,
+      olives_black: 40,
+      anchovies: 40,
+      tomatos_canned: 380,
+      olive_oil: 15,
+      fettucine: 1
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
 
   // Can be per order
-  var french_toast={
-    marraqueta:1,
-    egg:1,
-    milk:1/6.0,
-    flour:15/2.0,
-    sugar:25/2.0,
-    syrup_gringo:20
-  }
+  buffalo_wings: {
+    shown_name:"Buffalo Wings",
+    html_id:'buffalo wings',
+    description:`KING OF THE GRINGO FOODS. Buttery hot sauce over air-fried chicken wings. 
+        Nutritional value was not of great concern when writing this recipe. Very messy. Easily a 10/10 top food.`,
+    amount: 1,
+    recipe: {
+      wings_flats: 8,
+      hot_sauce_hot: 30,
+      butter: 15,
+      misc: 300,
+      flour: 20
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
 
   // Can be per order
-  var egg_fried={
-    egg:1,
-    olive_oil:7
-  }
+  french_toast: {
+    shown_name:"Marraqueta French Toast Sticks",
+    html_id:'french toast',
+    description:`Crusty old marraqueta dipped in batter and cooked in a pan. Moist and sweet and cinnamony. 
+        Comes with maple syrup, the cheap gringo variety is best (more options potentially coming soon).`,
+    amount: 1,
+    recipe: {
+      marraqueta: 1,
+      egg: 1,
+      milk: 1 / 6.0,
+      flour: 15 / 2.0,
+      sugar: 25 / 2.0,
+      syrup_gringo: 20
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
 
   // Can be per order
-  var bacon={
-    bacon_thin:1
-  }
-  
+  egg_fried: {
+    shown_name:"Fried Egg",
+    html_id:'fried egg',
+    description:`Open up da egg put da egg in da pan add da salt add da peppa put in mouth. Can be over easy or over hard.`,
+    amount: 1,
+    recipe: {
+      egg: 1,
+      olive_oil: 7
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
+  },
+
   // Egg
-  var egg ={
-    egg:1
+  egg: {
+    shown_name:"Egg",
+    html_id:'egg',
+    description:`It's just an egg. Like literally one of those white spheroidal things. I will not cook it or alter it in any way.
+        I will hand you a single egg if you ask me to. I have no clue why you would order this.`,
+    amount: 1,
+    recipe: {
+      egg: 1
+    },
+    options: {
+      cinnamon: 1,
+      chocolate: 1,
+      coffee: 1
+    },
+    extras: {
+      bacon: 1,
+      sausage: 1
+    }
   }
+};
 
   function roundnum(num){
     return Math.ceil(num / 50)*50;
@@ -337,64 +471,76 @@
 
     return {price:roundnum(pricesum*net), cals:calsum*net};
   }
-  function show_results(dish, net, html_id, name) {
-    let results = get_sums(dish, ingredient_dict, net);
-    document.getElementById(html_id).innerHTML = `${name} <br>| $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal |`;
+  function show_results(dish) {
+    let results = get_sums(dish.recipe, ingredient_dict, dish.amount);
+    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>| $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal |`;
   }
 
-  
+  for (const name in all_dishes) {
+    const dish = all_dishes[name]
+    show_results(dish)
+  }
 
-  show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
-  show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
-  show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
-  show_results(egg, 1, "egg", "Egg")
-  show_results(putanesca, 1, "putanesca", "Putanesca")
-  show_results(buffalo_wings,1,"buffalo wings", "Buffalo Wings")
-  show_results(french_toast,1,"french toast", "Marraqueta French Toast Sticks")
-  show_results(egg_fried,1,"fried egg", "Fried Egg")
-  show_results(bacon,1,"bacon", "Strip of Bacon")
+  //show_results(carbonara, 1, "carbonara", "(Almost) Carbonara")
+  //show_results(roasted_pepper_sauce, 1/4.0, "roasted pepper", "Roasted Red Pepper & Pistaccio Sauce")
+  //show_results(gumbo, 1/5.0, "gumbo", "Shrimp & Sausage Gumbo")
+  //show_results(egg, 1, "egg", "Egg")
+  //show_results(putanesca, 1, "putanesca", "Putanesca")
+  //show_results(buffalo_wings,1,"buffalo wings", "Buffalo Wings")
+  //show_results(french_toast,1,"french toast", "Marraqueta French Toast Sticks")
+  //show_results(egg_fried,1,"fried egg", "Fried Egg")
+  //show_results(bacon,1,"bacon", "Strip of Bacon")
 
   function showBox(mode, dish) {
-    document.getElementById("popupBox").style.display = "block";
     if (mode == 0) {
-      if (dish == 'carbonara') {
-        document.getElementById("boxtext").innerHTML = `Pasta dish with bacon (traditionally guanciale, hence 'almost') and cheese sauce. 
-          The sauce is made by whipping egg yolks & parmesan with the rendered fat of the bacon, giving it a smooth and creamy texture.`;
-      } else if (dish == 'roasted pepper') {
-        document.getElementById("boxtext").innerHTML = `They sell a similar sauce to this in supermarkets in Italy, 
-        one of my favorite things I tried there. Very simple and light.`;
-      } else if (dish == 'putanesca') {
-        document.getElementById("boxtext").innerHTML = `Kitchen sink pasta. Tomato sauce with garlic, anchovies, red pepper, olives, and capers.
-        Complex and delicious.`;
-      } else if (dish == 'gumbo') {
-        document.getElementById("boxtext").innerHTML = `Cajun stew made with a very dark roux base and the 'holy trinity' of cajun cooking (onion,
-        red pepper, celery). While meat additions vary, this recipe uses large shrimp and seared longaniza.`;
-      } else if (dish == 'egg') {
-        document.getElementById("boxtext").innerHTML = `It's just an egg. Like literally one of those white spheroidal things. I will not cook it or alter it in any way.
-        I will hand you a single egg if you ask me to. I have no clue why you would order this.`;
-      } else if (dish == 'buffalo wings') {
-        document.getElementById("boxtext").innerHTML = `KING OF THE GRINGO FOODS. Buttery hot sauce over air-fried chicken wings. 
-        Nutritional value was not of great concern when writing this recipe. Very messy. Easily a 10/10 top food.`;
-      } else if (dish == 'french toast') {
-        document.getElementById("boxtext").innerHTML = `Crusty old marraqueta dipped in batter and cooked in a pan. Moist and sweet and cinnamony. 
-        Comes with maple syrup, the cheap gringo variety is best (more options potentially coming soon).`
-      } else if (dish == 'fried egg') {
-        document.getElementById("boxtext").innerHTML = `Open up da egg put da egg in da pan add da salt add da peppa put in mouth. Can be over easy or over hard.`
-      } else if (dish == 'bacon') {
-        document.getElementById("boxtext").innerHTML = `It's bacon, I can make it chewy or crunchy`
-      }
+      //This is for the DESCRIPTION box
+      document.getElementById("popupBox").style.display = "block";
+      document.getElementById("boxtext").innerHTML = all_dishes[dish].description;
     } else {
-      document.getElementById("boxtext").innerHTML = "This doesn't do anything yet lmao";
-    }
+      //This is for the ADD THINGS box
+      //This is for extras
+      document.getElementById("addBox").style.display = "block";
+      const ingredients = all_dishes[dish].extras
+
+      const listContainer = document.getElementById('ingredients-list');
+
+      ingredients.forEach((ingredient, index) => {
+        const item = document.createElement('div');
+        item.className = 'ingredient';
+
+        item.innerHTML = `
+          <div class="ingredient-name">${ingredient}</div>
+          <button onclick="changeCount(${index}, -1)">-</button>
+          <div class="counter" id="counter-${index}">0</div>
+          <button onclick="changeCount(${index}, 1)">+</button>
+        `;
+
+        listContainer.appendChild(item);
+      });
+
+        const counts = new Array(ingredients.length).fill(0);
+      }
   }
 
-  function hideBox() {
+  function hidepopBox() {
     document.getElementById("popupBox").style.display = "none";
+  }
+  function hideaddBox() {
+    document.getElementById("addBox").style.display = "none";
   }
 
   function getRandomEntry(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
+
+  //Stuff for the addition of extras
+  
+
+    function changeCount(index, delta) {
+      counts[index] = Math.max(0, counts[index] + delta); // Prevent negative counts
+      document.getElementById(`counter-${index}`).textContent = counts[index];
+    }
+  
   const messagelist = ["there is no rat hiding in my hair doing the cooking stop asking",
                        "my name is not and never has been mevin michael moy",
                        "food tastes better if you believe in ghosts",
