@@ -219,9 +219,11 @@
       </div>
 
       <div id="orderSummaryBox" style="display: none;" class="order-summary-box">
-        <img src="/assets/apuchef.png" width="50%">
-        <h3>Your Order</h3>
-        <ul id="orderList"></ul>
+        <div id="summaryContent">
+          <img src="/assets/apuchef.png" width="50%">
+          <h3>Your Order</h3>
+          <ul id="orderList"></ul>
+        </div>
         <button onclick="hideOrderSummary()">Close</button>
       </div>
 
@@ -937,7 +939,7 @@ function updateSubtotal() {
   function toggleOrderSummary() {
     const box = document.getElementById("orderSummaryBox");
     const list = document.getElementById("orderList");
-
+    const content = document.getElementById("summaryContent");
     // Make the box visible
     box.style.display = "block";
 
@@ -956,11 +958,11 @@ function updateSubtotal() {
 
     // Wait for rendering, then take the screenshot
     setTimeout(() => {
-      html2canvas(box).then(canvas => {
+      html2canvas(content).then(canvas => {
         const image = new Image();
         image.src = canvas.toDataURL("image/png");
         image.style.maxWidth = "100%";
-        box.parentNode.replaceChild(image, box);
+        content.parentNode.replaceChild(image, content);
       });
     }, 100); // slight delay to ensure rendering
   }
