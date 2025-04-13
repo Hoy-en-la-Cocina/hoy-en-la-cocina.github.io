@@ -1058,8 +1058,8 @@ function updateSubtotal() {
   deleteBtn.onclick = () => {
     savedSelections.splice(index, 1);
     // re-render the list and recalculate totals
-    renderEditContent(); // you can move this whole loop into a function with that name
     updateSubtotal();      // or however you recalculate totals
+    renderEditContent(); // you can move this whole loop into a function with that name
   };
 
   li.appendChild(deleteBtn);
