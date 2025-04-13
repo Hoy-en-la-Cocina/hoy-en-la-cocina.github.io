@@ -950,7 +950,7 @@ function updateSubtotal() {
     // Make the box visible
     box.style.display = "block";
 
-    document.getElementById("receiptTotals").innerHTML = `Totals: $${price_total} | ${cal_total} cal`
+    document.getElementById("receiptTotals").innerHTML = `Totals: $${price_total} | ${cal_total.toFixed(0)} cal`
 
     // Populate the order list
     list.innerHTML = "";
