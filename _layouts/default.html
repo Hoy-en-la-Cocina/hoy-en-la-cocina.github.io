@@ -29,7 +29,7 @@
       body {
             text-align: center;
             margin: 50px;
-            padding-bottom: -5px;
+            padding-bottom: 1em;
         }
         .box {
           display: none; /* Initially hidden */
@@ -804,15 +804,28 @@ function getCurrentSelection() {
   const selectedOption = document.querySelector(`input[name="extra-option-radio-${dish}"]:checked`);
   const option = selectedOption ? selectedOption.value : null;
 
-  return { dish, extras, option };
+  return { dish:dish, extras:extras, option:option };
 }
 
 function saveSelection() {
   const selection = getCurrentSelection();
   savedSelections.push(selection);
+  updateSubtotal();
   document.getElementById("addBox").style.display = "none";
   //console.log("All saved selections:", savedSelections);
 }
+  function updateSubtotal() {
+    subtotal = 0
+    savedSelections.forEach(function(order)) {
+      subtotal += all_dishes[order.dish].base_price;
+      subtotal += ingredients_dict[order.option].price;
+      order.extras.forEach(function(xtra)){
+        subtotal += ingredients_dict[xtra].price;
+      }
+    }
+    subtotal = roundnum(subtotal)
+    document.getElementById("subtotal-amount").innerHTML = `$${subtotal}`
+  }
 
   function proceedToCheckout() {
   // Placeholder function
