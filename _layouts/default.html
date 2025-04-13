@@ -211,6 +211,7 @@
         <br>
         <div id="totals"></div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 0px;">
+          <div id="NoOption"; color=red;></div>
           <button class="save-btn" onclick="saveSelection()">Add to Order</button>
           <button class="close-btn" onclick="hideaddBox()">Cancel</button>
         </div>
@@ -481,6 +482,41 @@
     price: 570/15.0,
     cals: 137/100.0,
   },
+  corbatas: { //Servings
+    name: "Corbatas",
+    price: 990/5.0,
+    cals: 270.4
+  },
+  spaghetti: { //Servings
+    name: "Spaghetti",
+    price: 990/5.0,
+    cals: 270.4,
+  },
+  tallarines: { //Servings 
+    name: "Tallarines No77",
+    price: 990/5.0,
+    cals: 270.4,
+  },
+  bucatini: { //Servings
+    name: "Bucatini",
+    price: 1890/6,
+    cals: 280.8
+  },
+  spirals: { //Servings
+    name: "Spirals",
+    price: 990/5.0,
+    cals: 270.4,
+  },
+  macaroni: { //Servings
+    name: "Macaroni",
+    price: 990/5.0,
+    cals: 270.4,
+  },
+  pantrucas: { //Servings
+    name: "Pantrucas",
+    price: 990/5.0,
+    cals:270.4,
+  }
 };
 
 const all_dishes = {
@@ -499,9 +535,14 @@ const all_dishes = {
       garlic: 2
     },
     options: {
-      cinnamon: 1,
-      chocolate: 1,
-      coffee: 1
+      fettucine: 1,
+      spaghetti: 1,
+      bucatini: 1,
+      tallarines: 1,
+      corbatas: 1,
+      macaroni: 1,
+      spirals: 1,
+      pantrucas: 1,
     },
     extras: {
       bacon_thin: 1,
@@ -521,12 +562,16 @@ const all_dishes = {
       pistaccio: 80,
       olive_oil: 15,
       garlic: 4,
-      fettucine: 5
     },
     options: {
-      cinnamon: 1,
-      chocolate: 1,
-      coffee: 1
+      fettucine: 4,
+      spaghetti: 4,
+      bucatini: 4,
+      tallarines: 4,
+      corbatas: 4,
+      macaroni: 4,
+      spirals: 4,
+      pantrucas: 4,
     },
     extras: {
       bacon_thin: 1,
@@ -576,12 +621,16 @@ const all_dishes = {
       anchovies: 40,
       tomatos_canned: 380,
       olive_oil: 15,
-      fettucine: 1
     },
     options: {
-      cinnamon: 1,
-      chocolate: 1,
-      coffee: 1
+      fettucine: 1,
+      spaghetti: 1,
+      bucatini: 1,
+      tallarines: 1,
+      corbatas: 1,
+      macaroni: 1,
+      spirals: 1,
+      pantrucas: 1,
     },
     extras: {
       bacon_thin: 1,
@@ -837,9 +886,13 @@ function getCurrentSelection() {
 
 function saveSelection() {
   const selection = getCurrentSelection();
-  savedSelections.push(selection);
-  updateSubtotal();
-  document.getElementById("addBox").style.display = "none";
+  if (selection.option == null) {
+    document.getElementById("NoOption").innerHTML = `Please Make an Option Choice`
+  } else {
+    savedSelections.push(selection);
+    updateSubtotal();
+    document.getElementById("addBox").style.display = "none";
+  }
   //console.log("All saved selections:", savedSelections);
 }
 function updateSubtotal() {
@@ -879,7 +932,7 @@ function updateSubtotal() {
       .map(([extra, count]) => `${extra} x${count}`)
       .join(", ");
 
-      li.textContent = `${index + 1}. ${item.dish} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
+      li.textContent = `${index + 1}. ${all_dishes[item.dish].name} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
       list.appendChild(li);
       });
 
