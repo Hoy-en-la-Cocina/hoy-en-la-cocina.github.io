@@ -12,6 +12,7 @@
     <script src="{{ '/assets/js/modernizr.js' | relative_url }}"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="{{ '/assets/js/headsmart.min.js' | relative_url }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
       $(document).ready(function () {
         $('#main_content').headsmart()
@@ -936,21 +937,34 @@ function updateSubtotal() {
   function toggleOrderSummary() {
     const box = document.getElementById("orderSummaryBox");
     const list = document.getElementById("orderList");
-    list.innerHTML = ""; // Clear previous items
 
+    // Make the box visible
+    box.style.display = "block";
+
+    // Populate the order list
+    list.innerHTML = "";
     savedSelections.forEach((item, index) => {
       const li = document.createElement("li");
 
       const extrasList = Object.entries(item.extras)
-      .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
-      .join(", ");
+        .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
+        .join(", ");
 
-      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option].name || "None"}, Extras: ${extrasList || "None"})`;
+      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option]?.name || "None"}, Extras: ${extrasList || "None"})`;
       list.appendChild(li);
-      });
+    });
 
-      box.style.display = "block";
+    // Wait for rendering, then take the screenshot
+    setTimeout(() => {
+      html2canvas(box).then(canvas => {
+        const image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        image.style.maxWidth = "100%";
+        box.parentNode.replaceChild(image, box);
+      });
+    }, 50); // slight delay to ensure rendering
   }
+
 
   function hideOrderSummary() {
     document.getElementById("orderSummaryBox").style.display = "none";
