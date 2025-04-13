@@ -131,7 +131,6 @@
           <div id="ingredients-list"></div>
         <br>
         <div id="totals"></div>
-        <br>
         <button class="close-btn" onclick="hideaddBox()">Close</button>
       </div>
       
@@ -708,7 +707,7 @@ function updatePrice() {
   }
 
   // Update the displayed total
-  document.getElementById("totals").innerHTML = `Totals: $${roundnum(total)}    ${caltotal.toFixed(0)}`;
+  document.getElementById("totals").innerHTML = `Totals: $${roundnum(total)} | ${caltotal.toFixed(0)} cal`;
 }
 
   function hidepopBox() {
