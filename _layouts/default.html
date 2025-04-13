@@ -648,6 +648,10 @@ const all_dishes = {
     return;
   }
   const ingredients_radio = Object.keys(all_dishes[dish].options);
+  if (!all_dishes[dish].options) {
+    console.error(`Dish options for "${dish}" not found in all_dishes.`);
+    return;
+  }
   const listContainer_radio = document.getElementById('ingredients-list-radio');
   listContainer_radio.innerHTML = ""; // clear previous content
 
