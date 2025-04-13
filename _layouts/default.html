@@ -130,6 +130,8 @@
         <h2>Extras</h2>
           <div id="ingredients-list"></div>
         <br>
+        <div id="totals"></div>
+        <br>
         <button class="close-btn" onclick="hideaddBox()">Close</button>
       </div>
       
@@ -612,31 +614,36 @@ const all_dishes = {
     show_results(dish)
   }
 
-  function showBox(mode, dish) {
+let counts = [];
+let currentDish = null;
+
+function showBox(mode, dish) {
   if (mode == 0) {
-    // This is for the DESCRIPTION box
+    // Show description
     document.getElementById("popupBox").style.display = "block";
     document.getElementById("boxtext").innerHTML = all_dishes[dish].description;
   } else {
-    // This is for the ADD THINGS box
+    // Show customization box
     document.getElementById("addBox").style.display = "block";
-    if (!all_dishes[dish]) {
-  console.error(`Dish "${dish}" not found in all_dishes.`);
-  return;
-}
-    const ingredients = Object.keys(all_dishes[dish].extras);
-    const listContainer = document.getElementById('ingredients-list');
-    
-    // Clear any existing ingredients first, if needed
-    listContainer.innerHTML = "";
+    currentDish = dish;
 
-    ingredients.forEach((ingredient, index) => {
+    const listContainer = document.getElementById('ingredients-list');
+    const listContainer_radio = document.getElementById('ingredients-list-radio');
+
+    listContainer.innerHTML = "";
+    listContainer_radio.innerHTML = "";
+
+    // --- Handle Extras (plus/minus)
+    const extras = Object.keys(all_dishes[dish].extras || {});
+    counts = new Array(extras.length).fill(0);
+
+    extras.forEach((ingredient, index) => {
       const item = document.createElement('div');
       item.className = 'ingredient';
 
       item.innerHTML = `
         <div class="ingredient-line">
-          <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
+          <div class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</div>
           <div class="ingredient-controls">
             <button onclick="changeCount(${index}, -1)">-</button>
             <div class="counter" id="counter-${index}">0</div>
@@ -644,40 +651,64 @@ const all_dishes = {
           </div>
         </div>
       `;
-
       listContainer.appendChild(item);
     });
 
-    // Define or reset counts
-    counts = new Array(ingredients.length).fill(0);
+    // --- Handle Mandatory Radio Options
+    const radios = Object.keys(all_dishes[dish].options || {});
+    radios.forEach((ingredient) => {
+      const item = document.createElement('div');
+      item.className = 'ingredient';
 
-  // For the mandatory options
-  if (!all_dishes[dish]) {
-    console.error(`Dish "${dish}" not found in all_dishes.`);
-    return;
+      item.innerHTML = `
+        <label class="ingredient-line">
+          <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
+          <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" />
+        </label>
+      `;
+      listContainer_radio.appendChild(item);
+    });
+
+    // --- Attach listeners to radio buttons
+    const radioInputs = document.querySelectorAll(`input[name="extra-option-radio-${dish}"]`);
+    radioInputs.forEach(input => {
+      input.addEventListener("change", updatePrice);
+    });
+
+    updatePrice();
   }
-  const ingredients_radio = Object.keys(all_dishes[dish].options);
-  if (!all_dishes[dish].options) {
-    console.error(`Dish options for "${dish}" not found in all_dishes.`);
-    return;
+}
+
+function changeCount(index, delta) {
+  counts[index] += delta;
+  if (counts[index] < 0) counts[index] = 0;
+  document.getElementById(`counter-${index}`).innerText = counts[index];
+  updatePrice();
+}
+
+function updatePrice() {
+  let total = 0;
+  let caltotal = 0;
+
+  // Add extra ingredients cost
+  const extras = Object.keys(all_dishes[currentDish]?.extras || {});
+  extras.forEach((ingredient, i) => {
+    const price = ingredient_dict[ingredient]?.price || 0;
+    total += counts[i] * price;
+    const calor = ingredient_dict[ingredient]?.cals || 0;
+    caltotal += counts[i] * calor;
+  });
+
+  // Add selected radio option cost
+  const selectedRadio = document.querySelector(`input[name="extra-option-radio-${currentDish}"]:checked`);
+  if (selectedRadio) {
+    const selectedIngredient = selectedRadio.value;
+    total += ingredient_dict[selectedIngredient]?.price || 0;
+    caltotal += ingredient_dict[selectedIngredient]?.cals || 0;
   }
-  const listContainer_radio = document.getElementById('ingredients-list-radio');
-  listContainer_radio.innerHTML = ""; // clear previous content
 
-  ingredients_radio.forEach((ingredient, index) => {
-  const item = document.createElement('div');
-  item.className = 'ingredient';
-
-  item.innerHTML = `
-    <label class="ingredient-line">
-      <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
-      <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" />
-    </label>
-  `;
-
-  listContainer_radio.appendChild(item);
-});
-  }
+  // Update the displayed total
+  document.getElementById("totals").innerHTML = "Totals: $${roundnum(total)}    ${caltotal.toFixed(2)}";
 }
 
   function hidepopBox() {
@@ -692,10 +723,10 @@ const all_dishes = {
   }
 
   //Stuff for the addition of extras
-    function changeCount(index, delta) {
-      counts[index] = Math.max(0, counts[index] + delta); // Prevent negative counts
-      document.getElementById(`counter-${index}`).textContent = counts[index];
-    }
+    //function changeCount(index, delta) {
+    //  counts[index] = Math.max(0, counts[index] + delta); // Prevent negative counts
+    //  document.getElementById(`counter-${index}`).textContent = counts[index];
+   // }
   
   const messagelist = ["there is no rat hiding in my hair doing the cooking stop asking",
                        "my name is not and never has been mevin michael moy",
