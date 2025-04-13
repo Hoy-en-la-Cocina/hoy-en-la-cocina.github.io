@@ -929,7 +929,7 @@ function updateSubtotal() {
       const li = document.createElement("li");
 
       const extrasList = Object.entries(item.extras)
-      .map(([extra, count]) => `${extra} x${count}`)
+      .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
       .join(", ");
 
       li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
