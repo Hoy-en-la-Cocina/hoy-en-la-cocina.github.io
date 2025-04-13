@@ -590,7 +590,7 @@ const all_dishes = {
 };
 
   function roundnum(num){
-    return parseFloat(Math.ceil(num / 50)*50);
+    return Math.ceil(num / 50)*50;
   }
 
   function get_sums(dish, ingredients, net) {
@@ -604,7 +604,6 @@ const all_dishes = {
   }
   function show_results(dish) {
     let resulti = get_sums(dish.recipe, ingredient_dict, dish.amount);
-    console.error("Invalid price or calories:", resulti);
     document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>| $${resulti.price.toFixed(0)} |  ${resulti.cals.toFixed(0)} cal |`;
   }
 
