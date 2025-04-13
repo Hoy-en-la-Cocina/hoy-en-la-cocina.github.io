@@ -708,7 +708,7 @@ function updatePrice() {
   }
 
   // Update the displayed total
-  document.getElementById("totals").innerHTML = "Totals: $${roundnum(total)}    ${caltotal.toFixed(2)}";
+  document.getElementById("totals").innerHTML = `Totals: $${roundnum(total)}    ${caltotal.toFixed(0)}`;
 }
 
   function hidepopBox() {
