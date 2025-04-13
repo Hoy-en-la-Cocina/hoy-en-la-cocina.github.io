@@ -643,6 +643,10 @@ const all_dishes = {
     counts = new Array(ingredients.length).fill(0);
 
   // For the mandatory options
+  if (!all_dishes[dish]) {
+    console.error(`Dish "${dish}" not found in all_dishes.`);
+    return;
+  }
   const ingredients_radio = Object.keys(all_dishes[dish].options);
   const listContainer_radio = document.getElementById('ingredients-list-radio');
   listContainer_radio.innerHTML = ""; // clear previous content
