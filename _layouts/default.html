@@ -600,7 +600,7 @@ const all_dishes = {
       pricesum += ingredients[key].price * dish[key];
       calsum += ingredients[key].cals * dish[key];
     };
-
+    console.error("Invalid price or calories:", pricesum * net);
     return {price:roundnum(pricesum*net), cals:calsum*net};
   }
   function show_results(dish) {
