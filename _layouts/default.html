@@ -224,7 +224,7 @@
           <h3>Your Order</h3>
           <ul id="orderList"></ul>
         </div>
-        <button onclick="hideOrderSummary()">Close</button>
+        <button class="close-btn" onclick="hideOrderSummary()">Close</button>
       </div>
 
       <div id="subtotal-box">
@@ -961,7 +961,7 @@ function updateSubtotal() {
       html2canvas(content).then(canvas => {
         const image = new Image();
         image.src = canvas.toDataURL("image/png");
-        image.style.maxWidth = "100%";
+        image.style.maxWidth = "99%";
         content.parentNode.replaceChild(image, content);
       });
     }, 100); // slight delay to ensure rendering
@@ -970,6 +970,9 @@ function updateSubtotal() {
 
   function hideOrderSummary() {
     document.getElementById("orderSummaryBox").style.display = "none";
+    document.getElementById("summaryContent").innerHMTL = `<img src="/assets/apuchef.jpg" width="50%">
+          <h3>Your Order</h3>
+          <ul id="orderList"></ul>`
   }
 
   function getRandomEntry(arr) {
