@@ -250,7 +250,7 @@
           <ul id="editOrderList"></ul>
           <h3 id="editReceiptTotals"></h3>
         </div>
-        <button class="close-btn" onclick="hideOrderSummary()">Close</button>
+        <button class="close-btn" onclick="hideEditBox()">Close</button>
       </div>
 
       <div id="subtotal-box">
@@ -1058,7 +1058,7 @@ function updateSubtotal() {
   deleteBtn.onclick = () => {
     savedSelections.splice(index, 1);
     // re-render the list and recalculate totals
-    renderEditOrderList(); // you can move this whole loop into a function with that name
+    renderEditContent(); // you can move this whole loop into a function with that name
     updateSubtotal();      // or however you recalculate totals
   };
 
