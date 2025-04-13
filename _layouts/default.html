@@ -754,8 +754,8 @@ function updateTotal() {
   const dish = currentSelection.dish;
   if (!dish || !all_dishes[dish]) return;
 
-  let total = all_dishes[currentSelection].base_price;
-  let caltotal = all_dishes[currentSelection].base_cals;
+  let total = all_dishes[dish].base_price;
+  let caltotal = all_dishes[dish].base_cals;
 
   // Extras
   const extras = Object.keys(all_dishes[dish].extras);
