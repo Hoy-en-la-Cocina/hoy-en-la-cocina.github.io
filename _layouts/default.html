@@ -889,6 +889,7 @@ function saveSelection() {
   if (selection.option == null) {
     document.getElementById("NoOption").innerHTML = `Please Make an Option Choice`
   } else {
+    document.getElementById("NoOption").innerHTML = ``
     savedSelections.push(selection);
     updateSubtotal();
     document.getElementById("addBox").style.display = "none";
