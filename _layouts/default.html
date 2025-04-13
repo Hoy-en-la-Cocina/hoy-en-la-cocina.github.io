@@ -662,18 +662,18 @@ const all_dishes = {
   listContainer_radio.innerHTML = ""; // clear previous content
 
   ingredients_radio.forEach((ingredient, index) => {
-    const item = document.createElement('div');
-    item.className = 'ingredient';
+  const item = document.createElement('div');
+  item.className = 'ingredient';
 
-    item.innerHTML = `
-      <label class="ingredient-line">
-        <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" />
-        <span class="ingredient-name">${ingredient_dict[ingredient].name}</span>
-      </label>
-    `;
+  item.innerHTML = `
+    <label class="ingredient-line">
+      <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
+      <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" />
+    </label>
+  `;
 
-    listContainer_radio.appendChild(item);
-  });
+  listContainer_radio.appendChild(item);
+});
   }
 }
 
