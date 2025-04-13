@@ -140,6 +140,27 @@
   .checkout-btn:hover {
     background-color: #218838;
   }
+
+  .order-summary-box {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 999;
+  }
+
+  .order-summary-box h3 {
+    margin-top: 0;
+  }
+
     </style>
   </head>
 
@@ -195,11 +216,17 @@
         </div>
       </div>
 
+      <div id="orderSummaryBox" style="display: none;" class="order-summary-box">
+        <h3>Your Order</h3>
+        <ul id="orderList"></ul>
+        <button onclick="hideOrderSummary()">Close</button>
+      </div>
+
       <div id="subtotal-box">
         <div class="subtotal-text">
           Subtotal: $<span id="subtotal-amount">0.00</span>
         </div>
-        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        <button class="checkout-btn" onclick="toggleOrderSummary()">Show Order</button>
       </div>
       
 
@@ -825,7 +852,7 @@ function updateSubtotal() {
     }
 
     Object.keys(order.extras).forEach(function(extra) {  // Corrected the loop to iterate over the keys of the 'extras' object
-      subtotal += ingredient_dict[extra].price;  // Adding price for each extra
+      subtotal += ingredient_dict[extra].price * order.extras[extra];  // Adding price for each extra
     });
   });
 
@@ -833,16 +860,34 @@ function updateSubtotal() {
   document.getElementById("subtotal-amount").innerHTML = `${subtotal}`;
 }
 
-  function proceedToCheckout() {
-  // Placeholder function
-    alert("Taking you to checkout!");
-  }
-
   function hidepopBox() {
     document.getElementById("popupBox").style.display = "none";
   }
   function hideaddBox() {
     document.getElementById("addBox").style.display = "none";
+  }
+
+  function toggleOrderSummary() {
+    const box = document.getElementById("orderSummaryBox");
+    const list = document.getElementById("orderList");
+    list.innerHTML = ""; // Clear previous items
+
+    savedSelections.forEach((item, index) => {
+      const li = document.createElement("li");
+
+      const extrasList = Object.entries(item.extras)
+      .map(([extra, count]) => `${extra} x${count}`)
+      .join(", ");
+
+      li.textContent = `${index + 1}. ${item.dish} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
+      list.appendChild(li);
+      });
+
+      box.style.display = "block";
+  }
+
+  function hideOrderSummary() {
+    document.getElementById("orderSummaryBox").style.display = "none";
   }
 
   function getRandomEntry(arr) {
