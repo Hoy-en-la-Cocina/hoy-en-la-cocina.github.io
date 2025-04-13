@@ -62,11 +62,22 @@
         }
 
         .ingredient-line {
-          display: flex;
-          align-items: center;
-          gap: 10px; /* space between elements */
-          margin: 5px 0;
-        }
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.ingredient-name {
+  overflow-wrap: anywhere;
+}
+
+.ingredient-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
     </style>
   </head>
 
@@ -594,13 +605,15 @@ const all_dishes = {
         item.className = 'ingredient';
 
         item.innerHTML = `
-            <div class="ingredient-line">
-              <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
+          <div class="ingredient-line">
+            <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
+            <div class="ingredient-controls">
               <button onclick="changeCount(${index}, -1)">-</button>
               <div class="counter" id="counter-${index}">0</div>
               <button onclick="changeCount(${index}, 1)">+</button>
             </div>
-            `;
+          </div>
+        `;
 
         listContainer.appendChild(item);
       });
