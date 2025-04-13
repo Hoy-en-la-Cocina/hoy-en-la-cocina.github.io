@@ -926,7 +926,7 @@ function updateSubtotal() {
 
     Object.keys(order.extras).forEach(function(extra) {  // Corrected the loop to iterate over the keys of the 'extras' object
       subtotal += ingredient_dict[extra].price * order.extras[extra];  // Adding price for each extra
-      calsub += ingredient_dict[extra].cal * order.extras[extra]
+      calsub += ingredient_dict[extra].cals * order.extras[extra];
     });
   });
 
