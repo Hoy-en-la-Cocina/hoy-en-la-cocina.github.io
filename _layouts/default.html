@@ -587,40 +587,43 @@ const all_dishes = {
     show_results(dish)
   }
 
-  function showBox(mode, dish) {
-    if (mode == 0) {
-      //This is for the DESCRIPTION box
-      document.getElementById("popupBox").style.display = "block";
-      document.getElementById("boxtext").innerHTML = all_dishes[dish].description;
-    } else {
-      //This is for the ADD THINGS box
-      //This is for extras
-      document.getElementById("addBox").style.display = "block";
-      const ingredients = Object.keys(all_dishes[dish].extras);
+  function showBox(dish, mode) {
+  if (mode == 0) {
+    // This is for the DESCRIPTION box
+    document.getElementById("popupBox").style.display = "block";
+    document.getElementById("boxtext").innerHTML = all_dishes[dish].description;
+  } else {
+    // This is for the ADD THINGS box
+    document.getElementById("addBox").style.display = "block";
+    
+    const ingredients = Object.keys(all_dishes[dish].extras);
+    const listContainer = document.getElementById('ingredients-list');
+    
+    // Clear any existing ingredients first, if needed
+    listContainer.innerHTML = "";
 
-      const listContainer = document.getElementById('ingredients-list');
+    ingredients.forEach((ingredient, index) => {
+      const item = document.createElement('div');
+      item.className = 'ingredient';
 
-      ingredients.forEach((ingredient, index) => {
-        const item = document.createElement('div');
-        item.className = 'ingredient';
-
-        item.innerHTML = `
-          <div class="ingredient-line">
-            <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
-            <div class="ingredient-controls">
-              <button onclick="changeCount(${index}, -1)">-</button>
-              <div class="counter" id="counter-${index}">0</div>
-              <button onclick="changeCount(${index}, 1)">+</button>
-            </div>
+      item.innerHTML = `
+        <div class="ingredient-line">
+          <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
+          <div class="ingredient-controls">
+            <button onclick="changeCount(${index}, -1)">-</button>
+            <div class="counter" id="counter-${index}">0</div>
+            <button onclick="changeCount(${index}, 1)">+</button>
           </div>
-        `;
+        </div>
+      `;
 
-        listContainer.appendChild(item);
-      });
+      listContainer.appendChild(item);
+    });
 
-        const counts = new Array(ingredients.length).fill(0);
-      }
+    // Define or reset counts
+    counts = new Array(ingredients.length).fill(0);
   }
+}
 
   function hidepopBox() {
     document.getElementById("popupBox").style.display = "none";
