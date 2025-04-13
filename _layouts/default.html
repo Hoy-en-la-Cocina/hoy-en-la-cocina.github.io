@@ -932,7 +932,7 @@ function updateSubtotal() {
       .map(([extra, count]) => `${extra} x${count}`)
       .join(", ");
 
-      li.textContent = `${index + 1}. ${all_dishes[item.dish].name} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
+      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
       list.appendChild(li);
       });
 
