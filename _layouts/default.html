@@ -53,6 +53,16 @@
             margin-top: 10px;
             border-radius: 5px;
         }
+      /* Save button inside the box */
+        .save-btn {
+            cursor: pointer;
+            background: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
 
         .fancy-border {
           /*display: inline-block;*/
@@ -131,10 +141,8 @@
           <div id="ingredients-list"></div>
         <br>
         <div id="totals"></div>
-        <div style="display: flex; justify-content: center;">
-          <button onclick="saveSelection()">Add to Order</button>
-          <button class="close-btn" onclick="hideaddBox()">Cancel</button>
-        </div>
+        <button class="save-btn" onclick="saveSelection()">Add to Order</button>
+        <button class="close-btn" onclick="hideaddBox()">Cancel</button>
       </div>
       
 
