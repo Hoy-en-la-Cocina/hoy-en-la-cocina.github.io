@@ -211,7 +211,7 @@
         <br>
         <div id="totals"></div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 0px;">
-          <p id="NoOption"; color=red;></p>
+          <p id="NoOption"; style="color:red;"></p>
           <button class="save-btn" onclick="saveSelection()">Add to Order</button>
           <button class="close-btn" onclick="hideaddBox()">Cancel</button>
         </div>
@@ -933,7 +933,7 @@ function updateSubtotal() {
       .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
       .join(", ");
 
-      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${item.option || "None"}, Extras: ${extrasList || "None"})`;
+      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option].name || "None"}, Extras: ${extrasList || "None"})`;
       list.appendChild(li);
       });
 
