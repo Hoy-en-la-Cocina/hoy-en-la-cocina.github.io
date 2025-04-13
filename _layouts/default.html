@@ -816,10 +816,10 @@ function saveSelection() {
 }
   function updateSubtotal() {
     subtotal = 0
-    savedSelections.forEach(function(order)) {
+    savedSelections.forEach(function(order) {
       subtotal += all_dishes[order.dish].base_price;
       subtotal += ingredients_dict[order.option].price;
-      order.extras.forEach(function(xtra)){
+      order.extras.forEach(function(xtra){
         subtotal += ingredients_dict[xtra].price;
       }
     }
