@@ -136,6 +136,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    margin-right: 2px;
   }
 
   .checkout-btn:hover {
@@ -239,6 +240,15 @@
           <h3>Your Order</h3>
           <ul id="orderList"></ul>
           <h3 id="receiptTotals"></h3>
+        </div>
+        <button class="close-btn" onclick="hideOrderSummary()">Close</button>
+      </div>
+
+      <div id="editBox" style="display: none;" class="order-summary-box">
+        <div id="editContent">
+          <h3>Your Order</h3>
+          <ul id="editOrderList"></ul>
+          <h3 id="editReceiptTotals"></h3>
         </div>
         <button class="close-btn" onclick="hideOrderSummary()">Close</button>
       </div>
@@ -1004,6 +1014,62 @@ function updateSubtotal() {
         </div>
         <button class="close-btn" onclick="hideOrderSummary()">Close</button>
         `
+  }
+
+  function toggleEditBox() {
+    const box = document.getElementById("editBox");
+    const list = document.getElementById("editOrderList");
+    const content = document.getElementById("editContent");
+    // Make the box visible
+    box.style.display = "block";
+
+    renderEditContent()
+  }
+
+  function renderEditContent() {
+    const box = document.getElementById("editBox");
+    const list = document.getElementById("editOrderList");
+    const content = document.getElementById("editContent");
+
+  document.getElementById("editReceiptTotals").innerHTML = `Totals: $${price_total} | ${cal_total.toFixed(0)} cal`;
+
+  list.innerHTML = "";
+
+  savedSelections.forEach((item, index) => {
+  const li = document.createElement("li");
+
+  const extrasList = Object.entries(item.extras)
+    .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
+    .join(", ");
+
+  li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option]?.name || "None"}, Extras: ${extrasList || "None"})`;
+
+  // Create the delete (X) button
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "×";
+  deleteBtn.style.marginLeft = "10px";
+  deleteBtn.style.color = "red";
+  deleteBtn.style.background = "none";
+  deleteBtn.style.border = "none";
+  deleteBtn.style.fontSize = "1.2em";
+  deleteBtn.style.cursor = "pointer";
+
+  // Hook up delete behavior
+  deleteBtn.onclick = () => {
+    savedSelections.splice(index, 1);
+    // re-render the list and recalculate totals
+    renderEditOrderList(); // you can move this whole loop into a function with that name
+    updateSubtotal();      // or however you recalculate totals
+  };
+
+  li.appendChild(deleteBtn);
+  list.appendChild(li);
+});
+  }
+
+
+  function hideEditBox() {
+    document.getElementById("editBox").style.display = "none";
   }
 
   function getRandomEntry(arr) {
