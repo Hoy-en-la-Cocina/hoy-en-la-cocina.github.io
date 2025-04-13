@@ -364,6 +364,15 @@
     price: 1000,
     cals: 150,
   },
+  chocolate: { //Grams
+    name: 'Chocolate',
+    price: 1500/150.0,
+    cals: 400/100.0,
+  },
+  coffee: { //Grams
+    name: 'Coffee',
+    price: 5690/220.0,
+    cals: 2/100.0
 };
 
 const all_dishes = {
@@ -389,7 +398,7 @@ const all_dishes = {
     extras: {
       bacon_thin: 1,
       sausage: 1
-    }
+    },
   },
 
   // Make jar of sauce
@@ -587,6 +596,9 @@ const all_dishes = {
 
   for (const name in all_dishes) {
     const dish = all_dishes[name]
+    let results = get_sums(dish.recipe, ingredient_dict, dish.amount);
+    all_dishes[name].base_price = results.price
+    all_dishes[name].base_cals = results.cals
     show_results(dish)
   }
 
