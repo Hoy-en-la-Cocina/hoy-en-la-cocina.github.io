@@ -29,7 +29,7 @@
       body {
             text-align: center;
             margin: 50px;
-            padding-bottom: 0em;
+            padding-bottom: 0.1em;
         }
         .box {
           display: none; /* Initially hidden */
@@ -123,6 +123,7 @@
   .subtotal-text {
     font-weight: 500;
     font-size: 1.2em;
+    margin-right: 10px;
   }
 
   .checkout-btn {
@@ -829,7 +830,7 @@ function updateSubtotal() {
   });
 
   subtotal = roundnum(subtotal);  // Assuming roundnum rounds the value as needed
-  document.getElementById("subtotal-amount").innerHTML = `$${subtotal}`;
+  document.getElementById("subtotal-amount").innerHTML = `${subtotal}`;
 }
 
   function proceedToCheckout() {
