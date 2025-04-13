@@ -686,8 +686,8 @@ function changeCount(index, delta) {
 }
 
 function updatePrice() {
-  let total = all_dishes[dish].base_price;
-  let caltotal = all_dishes[dish].base_cals;
+  let total = all_dishes[currentDish].base_price;
+  let caltotal = all_dishes[currentDish].base_cals;
 
   // Add extra ingredients cost
   const extras = Object.keys(all_dishes[currentDish]?.extras || {});
