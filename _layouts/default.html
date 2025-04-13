@@ -224,6 +224,7 @@
           <h3>Your Order</h3>
           <ul id="orderList"></ul>
         </div>
+        <h3 id="receiptTotals"></h3>
         <button class="close-btn" onclick="hideOrderSummary()">Close</button>
       </div>
 
@@ -913,19 +914,25 @@ function saveSelection() {
 }
 function updateSubtotal() {
   let subtotal = 0; // Initialize subtotal
+  let calsub = 0;
 
   savedSelections.forEach(function(order) {  // Corrected parentheses
     subtotal += all_dishes[order.dish].base_price;  // Adding base price for the dish
+    calsub += all_dishes[order.dish].base_cals;
     if (order.option) {
       subtotal += ingredient_dict[order.option].price;  // Adding price for selected option
+      calsub += ingredient_dict[order.option].cals;
     }
 
     Object.keys(order.extras).forEach(function(extra) {  // Corrected the loop to iterate over the keys of the 'extras' object
       subtotal += ingredient_dict[extra].price * order.extras[extra];  // Adding price for each extra
+      calsub += ingredient_dict[extra].cal * order.extras[extra]
     });
   });
 
   subtotal = roundnum(subtotal);  // Assuming roundnum rounds the value as needed
+  price_total = subtotal;
+  cal_total = calsub;
   document.getElementById("subtotal-amount").innerHTML = `${subtotal}`;
 }
 
@@ -942,6 +949,8 @@ function updateSubtotal() {
     const content = document.getElementById("summaryContent");
     // Make the box visible
     box.style.display = "block";
+
+    document.getElementById("receiptTotals").innerHTML = `Totals: $${price_total} | ${cal_total} cal`
 
     // Populate the order list
     list.innerHTML = "";
@@ -976,6 +985,7 @@ function updateSubtotal() {
           <h3>Your Order</h3>
           <ul id="orderList"></ul>
         </div>
+        <h3 id="receiptTotals"></h3>
         <button class="close-btn" onclick="hideOrderSummary()">Close</button>
         `
   }
