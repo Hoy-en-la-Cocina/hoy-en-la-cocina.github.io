@@ -517,7 +517,12 @@
     name: "Pantrucas",
     price: 990/5.0,
     cals:270.4,
-  }
+  },
+  none: { //this is for programming purposes
+    name: "None",
+    price: 0,
+    cals: 0,
+  },
 };
 
 const all_dishes = {
@@ -701,9 +706,7 @@ const all_dishes = {
       olive_oil: 7
     },
     options: {
-      cinnamon: 1,
-      chocolate: 1,
-      coffee: 1
+      none:1
     },
     extras: {
       bacon_thin: 1,
@@ -809,13 +812,21 @@ function showBox(mode, dish) {
     ingredients_radio.forEach((ingredient) => {
       const item = document.createElement('div');
       item.className = 'ingredient';
-
-      item.innerHTML = `
-        <label class="ingredient-line">
-          <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
-          <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" onchange="updateTotal()" />
-        </label>
-      `;
+      if (ingredients_radio.length === 1) {
+        item.innerHTML = `
+          <label class="ingredient-line">
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
+            <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" checked/>
+          </label>
+        `;
+      } else {
+        item.innerHTML = `
+          <label class="ingredient-line">
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
+            <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" onchange="updateTotal()" />
+          </label>
+        `;
+      }
 
       listContainer_radio.appendChild(item);
     });
@@ -888,7 +899,7 @@ function getCurrentSelection() {
 function saveSelection() {
   const selection = getCurrentSelection();
   if (selection.option == null) {
-    document.getElementById("NoOption").innerHTML = `Please Make an Option Choice`
+    document.getElementById("NoOption").innerHTML = `Please Make an Options Choice`
   } else {
     document.getElementById("NoOption").innerHTML = ``
     savedSelections.push(selection);
