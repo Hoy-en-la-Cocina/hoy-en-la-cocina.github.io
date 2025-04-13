@@ -605,6 +605,7 @@ const all_dishes = {
   }
   function show_results(dish) {
     let results = get_sums(dish.recipe, ingredient_dict, dish.amount);
+    console.error("Invalid price or calories:", results);
     document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>| $${results.price.toFixed(0)} |  ${results.cals.toFixed(0)} cal |`;
   }
 
