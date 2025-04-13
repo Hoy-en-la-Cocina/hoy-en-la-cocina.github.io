@@ -595,7 +595,10 @@ const all_dishes = {
   } else {
     // This is for the ADD THINGS box
     document.getElementById("addBox").style.display = "block";
-    
+    if (!all_dishes[dish]) {
+  console.error(`Dish "${dish}" not found in all_dishes.`);
+  return;
+}
     const ingredients = Object.keys(all_dishes[dish].extras);
     const listContainer = document.getElementById('ingredients-list');
     
