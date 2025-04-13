@@ -179,6 +179,19 @@
     margin-top: 0;
   }
 
+  .dish-buttons {
+    width: 100%;             /* Full width */
+    height: 50px;            /* Set height (you can change this value) */
+    font-size: 1rem;         /* Font size */
+    text-align: center;      /* Center text */
+    white-space: nowrap;     /* Prevent text wrapping */
+    overflow: hidden;        /* Hide overflow */
+    text-overflow: ellipsis; /* Add "..." if text is too long */
+    display: flex;           /* Make button content flexible */
+    align-items: center;     /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+  }
+
     </style>
   </head>
 
@@ -268,15 +281,15 @@
         <div class="fancy-border" style="border-bottom: none;">
           <p id="french toast"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0,'french_toast')">Description</button>
-            <button onclick="showBox(1,'french_toast')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0,'french_toast')">Description</button>
+            <button class="dish-button" onclick="showBox(1,'french_toast')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border">
           <p id="fried egg"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'egg_fried')">Description</button>
-            <button onclick="showBox(1, 'egg_fried')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0, 'egg_fried')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'egg_fried')">Add to Order</button>
           </div>
         </div>
         
@@ -284,44 +297,44 @@
         <div class="fancy-border" style="border-bottom: none;">
           <p id="carbonara"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0,'carbonara')">Description</button>
-            <button onclick="showBox(1,'carbonara')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0,'carbonara')">Description</button>
+            <button class="dish-button" onclick="showBox(1,'carbonara')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border" style="border-bottom: none;">
           <p id="roasted pepper"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'roasted_pepper_sauce')">Description</button>
-            <button onclick="showBox(1, 'roasted_pepper_sauce')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0, 'roasted_pepper_sauce')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'roasted_pepper_sauce')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border">
           <p id="putanesca"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'putanesca')">Description</button>
-            <button onclick="showBox(1, 'putanesca')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0, 'putanesca')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'putanesca')">Add to Order</button>
           </div>
         </div>
         <p><b style="font-size:36px;">OTHER</b></p>
         <div class="fancy-border" style="border-bottom: none;">
         <p id="gumbo"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'gumbo')">Description</button>
-            <button onclick="showBox(1, 'gumbo')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0, 'gumbo')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'gumbo')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border" style="border-bottom: none;">
         <p id="buffalo wings"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'buffalo_wings')">Description</button>
-            <button onclick="showBox(1, 'buffalo_wings')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0, 'buffalo_wings')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'buffalo_wings')">Add to Order</button>
           </div>
         </div>
         <div class="fancy-border">
           <p id="egg"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
-            <button onclick="showBox(0, 'egg')">Description</button>
-            <button onclick="showBox(1, 'egg')">Add to Order</button>
+            <button class="dish-button" onclick="showBox(0, 'egg')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'egg')">Add to Order</button>
           </div>
         </div>
         
