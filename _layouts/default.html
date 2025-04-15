@@ -994,7 +994,7 @@ function updateSubtotal() {
         .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
         .join(", ");
 
-      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option]?.name || "None"}, Extras: ${extrasList || "None"})`;
+      li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option]?.name || "None"}, Extras: ${extrasList || "None"}, Custom: ${item.request})`;
       list.appendChild(li);
     });
 
@@ -1049,7 +1049,7 @@ function updateSubtotal() {
     .map(([extra, count]) => `${ingredient_dict[extra].name} x${count}`)
     .join(", ");
 
-  li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option]?.name || "None"}, Extras: ${extrasList || "None"})`;
+  li.textContent = `${index + 1}. ${all_dishes[item.dish].shown_name} (Option: ${ingredient_dict[item.option]?.name || "None"}, Extras: ${extrasList || "None"}, Custom: ${item.request})`;
 
   // Create the delete (X) button
   const deleteBtn = document.createElement("button");
