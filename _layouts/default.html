@@ -953,7 +953,7 @@ function showBox(mode, dish) {
 
       item.innerHTML = `
         <div class="ingredient-line">
-          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${ingredient_dict[ingredient]?.price.toFixed(0) || ingredient} | ${ingredient_dict[ingredient]?.cals.toFixed(0) || ingredient} cals</div>
+          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].extras[ingredient]).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals * all_dishes[dish].extras[ingredient]).toFixed(0) || ingredient} cals</div>
           <div class="ingredient-controls">
             <button onclick="changeCount(${index}, -1)">-</button>
             <div class="counter" id="counter-${index}">0</div>
@@ -976,14 +976,14 @@ function showBox(mode, dish) {
       if (ingredients_radio.length === 1) {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price.toFixed(0) || ingredient} | ${ingredient_dict[ingredient]?.cals.toFixed(0) || ingredient} cals</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals* all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" checked/>
           </label>
         `;
       } else {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price.toFixed(0) || ingredient} | ${ingredient_dict[ingredient]?.cals.toFixed(0) || ingredient} cals</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals * all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" onchange="updateTotal()" />
           </label>
         `;
