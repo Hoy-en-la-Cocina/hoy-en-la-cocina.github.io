@@ -571,6 +571,36 @@
     price: 990/5.0,
     cals:270.4,
   },
+  ham: { //Grams
+    name: "Ham",
+    price: 2090/250.0,
+    cals: 102/100.0
+  },
+  mantecoso: { //Grams
+    name: "Queso Mantecoso",
+    price: 4490/350.0,
+    cals: 351/100.0,
+  },
+  cheese_blue: { //Grams
+    name: "Bleu Cheese",
+    price: 3650/100.0,
+    cals: 343/100.0,
+  },
+  cheese_mozzarella: { //Grams, one thing is 500
+    name: "Real Mozzarella",
+    price: 9250/500.0,
+    cals: 272/100.0,
+  },
+  quesillo: { //Grams, one thing is 160
+    name: "Quesillo",
+    price: 2190/320.0,
+    cals: 138/100,
+  },
+  hot_dog: { //Count
+    name: "Hot Dog",
+    price: 1190/5.0,
+    cals: 83.5,
+  },
   none: { //this is for programming purposes
     name: "None",
     price: 0,
@@ -752,6 +782,25 @@ const all_dishes = {
       sausage: 1
     }
   },
+
+  // Can be per order
+  ham_and_cheese: {
+    shown_name: "Jamon Queso",
+    html_id:'ham and cheese',
+    description:`A Chileno classic, with a bit of a twist depending on the cheese you pick`,
+    amount:1,
+    recipe:{
+      flour:0.5,
+      olive_oil:15,
+      ham: 100
+      },
+    options:{
+      
+    },
+    extras:{
+      
+    },
+  }
 
   // Egg
   egg: {
