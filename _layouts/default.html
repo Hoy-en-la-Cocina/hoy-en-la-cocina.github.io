@@ -1026,8 +1026,8 @@ function updateTotal() {
     const radioIngredient = selected.value;
     const optionData = ingredient_dict[radioIngredient];
     if (optionData) {
-      total += optionData.price * all_dishes[dish].options[ingredient] || 0;
-      caltotal += optionData.calories * all_dishes[dish].options[ingredient] || 0;
+      total += optionData.price * all_dishes[dish].options[radioIngredient] || 0;
+      caltotal += optionData.calories * all_dishes[dish].options[radioIngredient] || 0;
     }
   }
 
