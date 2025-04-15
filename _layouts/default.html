@@ -242,6 +242,7 @@
         <br>
         <h2>Custom Request:</h2>
           <textarea 
+          id="customRequest"
           rows="4" 
           cols="50" 
           placeholder="Type here..."
@@ -827,7 +828,7 @@ function showBox(mode, dish) {
 
       item.innerHTML = `
         <div class="ingredient-line">
-          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${ingredient_dict[ingredient]?.price || ingredient} | ${ingredient_dict[ingredient]?.cals || ingredient} cals</div>
+          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${ingredient_dict[ingredient]?.price.toFixed(0) || ingredient} | ${ingredient_dict[ingredient]?.cals.toFixed(0) || ingredient} cals</div>
           <div class="ingredient-controls">
             <button onclick="changeCount(${index}, -1)">-</button>
             <div class="counter" id="counter-${index}">0</div>
@@ -850,14 +851,14 @@ function showBox(mode, dish) {
       if (ingredients_radio.length === 1) {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price || ingredient} | ${ingredient_dict[ingredient]?.cals || ingredient} cals</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price.toFixed(0) || ingredient} | ${ingredient_dict[ingredient]?.cals.toFixed(0) || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" checked/>
           </label>
         `;
       } else {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price || ingredient} | ${ingredient_dict[ingredient]?.cals || ingredient} cals</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price.toFixed(0) || ingredient} | ${ingredient_dict[ingredient]?.cals.toFixed(0) || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" onchange="updateTotal()" />
           </label>
         `;
@@ -917,6 +918,7 @@ function getCurrentSelection() {
   const dish = currentSelection.dish;
   const extras = {};
   const extraKeys = Object.keys(all_dishes[dish].extras);
+  const request = document.getElementById("userText").value;
 
   extraKeys.forEach((ingredient, index) => {
     const count = counts[index];
@@ -928,7 +930,7 @@ function getCurrentSelection() {
   const selectedOption = document.querySelector(`input[name="extra-option-radio-${dish}"]:checked`);
   const option = selectedOption ? selectedOption.value : null;
 
-  return { dish:dish, extras:extras, option:option };
+  return { dish:dish, extras:extras, option:option, request:request};
 }
 
 function saveSelection() {
@@ -971,6 +973,7 @@ function updateSubtotal() {
     document.getElementById("popupBox").style.display = "none";
   }
   function hideaddBox() {
+    document.getElementById("userText").value = ``
     document.getElementById("addBox").style.display = "none";
   }
 
