@@ -917,7 +917,7 @@ function getCurrentSelection() {
   const dish = currentSelection.dish;
   const extras = {};
   const extraKeys = Object.keys(all_dishes[dish].extras);
-  const request = document.getElementById("userText").value;
+  const request = document.getElementById("customRequest").value;
 
   extraKeys.forEach((ingredient, index) => {
     const count = counts[index];
