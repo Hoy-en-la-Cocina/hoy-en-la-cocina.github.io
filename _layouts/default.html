@@ -241,7 +241,13 @@
           <div id="ingredients-list"></div>
         <br>
         <h2>Custom Request:</h2>
-          <input type="text" style="height: 40px;" placeholder="Type here..." />
+          <textarea 
+          rows="4" 
+          cols="50" 
+          placeholder="Type here..."
+          style="resize: vertical; font-size: 16px; padding: 8px;">
+        </textarea>
+
         <br>
         <div id="totals"></div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 0px;">
@@ -821,7 +827,7 @@ function showBox(mode, dish) {
 
       item.innerHTML = `
         <div class="ingredient-line">
-          <div class="ingredient-name">${ingredient_dict[ingredient].name}</div>
+          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${ingredient_dict[ingredient]?.price || ingredient} | ${ingredient_dict[ingredient]?.cals || ingredient} cals</div>
           <div class="ingredient-controls">
             <button onclick="changeCount(${index}, -1)">-</button>
             <div class="counter" id="counter-${index}">0</div>
@@ -844,14 +850,14 @@ function showBox(mode, dish) {
       if (ingredients_radio.length === 1) {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price || ingredient} | ${ingredient_dict[ingredient]?.cals || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" checked/>
           </label>
         `;
       } else {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient}</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${ingredient_dict[ingredient]?.price || ingredient} | ${ingredient_dict[ingredient]?.cals || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" onchange="updateTotal()" />
           </label>
         `;
