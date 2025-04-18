@@ -1116,8 +1116,8 @@ function updateTotal() {
   const extras = Object.keys(all_dishes[dish].extras);
   extras.forEach((ingredient, index) => {
     const count = counts[index];
-    const price = ingredient_dict[ingredient].price * all_dishes[dish].extras[ingredient]  * all_dishes[order.dish].amount || 0;
-    const cals = ingredient_dict[ingredient].calories * all_dishes[dish].extras[ingredient]  * all_dishes[order.dish].amount || 0;
+    const price = ingredient_dict[ingredient].price * all_dishes[dish].extras[ingredient]  * all_dishes[dish].amount || 0;
+    const cals = ingredient_dict[ingredient].calories * all_dishes[dish].extras[ingredient]  * all_dishes[dish].amount || 0;
     total += count * price;
     caltotal += count * cals;
   });
@@ -1128,8 +1128,8 @@ function updateTotal() {
     const radioIngredient = selected.value;
     const optionData = ingredient_dict[radioIngredient];
     if (optionData) {
-      total += optionData.price * all_dishes[dish].options[radioIngredient]  * all_dishes[order.dish].amount || 0;
-      caltotal += optionData.cals * all_dishes[dish].options[radioIngredient]  * all_dishes[order.dish].amount || 0;
+      total += optionData.price * all_dishes[dish].options[radioIngredient]  * all_dishes[dish].amount || 0;
+      caltotal += optionData.cals * all_dishes[dish].options[radioIngredient]  * all_dishes[dish].amount || 0;
     }
   }
 
