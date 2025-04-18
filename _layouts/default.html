@@ -1162,8 +1162,8 @@ function updateSubtotal() {
     subtotal += all_dishes[order.dish].base_price;  // Adding base price for the dish
     calsub += all_dishes[order.dish].base_cals;
     if (order.option) {
-      subtotal += ingredient_dict[order.option].price * all_dishes[dish].options[order.option];  // Adding price for selected option
-      calsub += ingredient_dict[order.option].cals * all_dishes[dish].options[order.option];
+      subtotal += ingredient_dict[order.option].price * all_dishes[order.dish].options[order.option];  // Adding price for selected option
+      calsub += ingredient_dict[order.option].cals * all_dishes[order.dish].options[order.option];
     }
 
     Object.keys(order.extras).forEach(function(extra) {  // Corrected the loop to iterate over the keys of the 'extras' object
