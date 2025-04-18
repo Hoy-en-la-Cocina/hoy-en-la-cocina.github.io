@@ -1014,7 +1014,7 @@ const all_dishes = {
     const minPrice = Math.min(...priceTotals);
     
     let resulti = get_sums(dish.recipe, ingredient_dict, dish.amount);
-    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>Minima: | $${(resulti.price + minPrice).toFixed(0)} |  ${(resulti.cals + minKcal).toFixed(0)} cal |`;
+    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>Minima: | $${((resulti.price + minPrice)*dish.amount).toFixed(0)} |  ${((resulti.cals + minKcal)*dish.amount).toFixed(0)} cal |`;
   }
 
   for (const name in all_dishes) {
@@ -1055,7 +1055,7 @@ function showBox(mode, dish) {
 
       item.innerHTML = `
         <div class="ingredient-line">
-          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].extras[ingredient]).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals * all_dishes[dish].extras[ingredient]).toFixed(0) || ingredient} cals</div>
+          <div class="ingredient-name">${ingredient_dict[ingredient].name} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].extras[ingredient] * all_dishes[dish].amount).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals * all_dishes[dish].extras[ingredient] * all_dishes[dish].amount).toFixed(0) || ingredient} cals</div>
           <div class="ingredient-controls">
             <button onclick="changeCount(${index}, -1)">-</button>
             <div class="counter" id="counter-${index}">0</div>
