@@ -371,6 +371,15 @@
             <button class="dish-button" onclick="showBox(1, 'egg')">Add to Order</button>
           </div>
         </div>
+
+        <p><b style="font-size:36px;">Bebidas</b></p>
+        <div class="fancy-border">
+        <p id="banana smoothie"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button class="dish-button" onclick="showBox(0, 'banana_smoothie')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'banana_smoothie')">Add to Order</button>
+          </div>
+        </div>
         
       </section>
 
@@ -631,6 +640,26 @@
     price: 0,
     cals: 0,
   },
+  banana: { //Count
+    name: "Banana",
+    price: 745/3.5,
+    cals: 89
+  },
+  stevia: { //ml
+    name: "Stevia",
+    price: 4590/400.0,
+    cals: 13/100.0
+  },
+  yoghurt: { //Grams, one thing is 1000
+    name: "Yoghurt",
+    price: 1959/1000.0,
+    cals: 59/100.0
+  },
+  peanut_butter: { //Grams, one thing is 1130
+    name: "Creamy Peanut Butter",
+    price: 9490/1130.0,
+    cals: 576/100.0
+  },
 };
 
 const all_dishes = {
@@ -881,6 +910,25 @@ const all_dishes = {
     }
   },
 
+  template: {
+    shown_name:"Banana Smoothie",
+    html_id:'banana smoothie',
+    description:`Yogurt, banana, some sweetener`,
+    amount: 1,
+    recipe: {
+      banana: 1,
+      yogurt: 250
+    },
+    options: {
+      sugar:10,
+      stevia:5
+    },
+    extras: {
+      chocolate:5,
+      peanut_butter:50
+    }
+  },
+    
   template: {
     shown_name:"",
     html_id:'template',
