@@ -318,6 +318,13 @@
             <button class="dish-button" onclick="showBox(1, 'chaparrita')">Add to Order</button>
           </div>
         </div>
+        <div class="fancy-border" style="border-bottom: none;">
+          <p id="green curry empanada"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button class="dish-button" onclick="showBox(0, 'green_curry_empanada')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'green_curry_empanada')">Add to Order</button>
+          </div>
+        </div>
         <div class="fancy-border">
           <p id="custom empanada"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
@@ -660,6 +667,16 @@
     price: 9490/1130.0,
     cals: 576/100.0
   },
+  chicken_breast: { // Grams, one thing is 850
+    name: "Chicken Breast",
+    price: 5890/850.0,
+    cals: 104/100.0,
+  },
+  green_curry: { // Grams, one thing is 345
+    name: "Green Curry Sauce",
+    price: 3499/345.0,
+    cals: 57.3/100.0,
+  }
 };
 
 const all_dishes = {
@@ -859,6 +876,7 @@ const all_dishes = {
     },
   },
 
+  // per order
   chaparrita: {
     shown_name:"Chaparrita",
     html_id:'chaparrita',
@@ -872,6 +890,25 @@ const all_dishes = {
     options: {
       hot_dog:1,
       longaniza:1,
+    },
+    extras: {
+    }
+  },
+
+  // per order
+  green_curry_empanada: {
+    shown_name:"Chicken and Cheese with Thai Green Curry",
+    html_id:'green curry empanada',
+    description:`Like a regular empanada de pollo queso, but with store-bought (I'm working on it) thai green curry sauce. Might be the best thing I've ever come up with.`,
+    amount: 1,
+    recipe: {
+      flour:65,
+      olive_oil:15,
+      mantecoso:60,
+      chicken_breast:200,
+      green_curry: 30,
+    },
+    options: {
     },
     extras: {
     }
