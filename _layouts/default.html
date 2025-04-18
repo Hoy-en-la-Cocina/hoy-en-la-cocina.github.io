@@ -995,8 +995,25 @@ const all_dishes = {
     return {price:roundnum(pricesum*net), cals:calsum*net};
   }
   function show_results(dish) {
+    const optionKeys = Object.keys(dish.options);
+
+    const kcalTotals = optionKeys.map(key => {
+      const amount = dish.options[key];
+      const kcalPerUnit = ingredients_dict[key]?.cals || 0;
+      return amount * kcalPerUnit;
+    });
+
+    const priceTotals = optionKeys.map(key => {
+      const amount = dish.options[key];
+      const pricePerUnit = ingredients_dict[key]?.price || 0;
+      return amount * pricePerUnit;
+    });
+
+    const minKcal = Math.min(...kcalTotals);
+    const minPrice = Math.min(...priceTotals);
+    
     let resulti = get_sums(dish.recipe, ingredient_dict, dish.amount);
-    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>| $${resulti.price.toFixed(0)} |  ${resulti.cals.toFixed(0)} cal |`;
+    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>| $${(resulti.price + minPrice).toFixed(0)} |  ${(resulti.cals + minKcal).toFixed(0)} cal |`;
   }
 
   for (const name in all_dishes) {
