@@ -1078,14 +1078,14 @@ function showBox(mode, dish) {
       if (ingredients_radio.length === 1) {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals* all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} cals</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].options[ingredient] * all_dishes[dish].amount).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals* all_dishes[dish].options[ingredient] * all_dishes[dish].amount).toFixed(0) || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" checked/>
           </label>
         `;
       } else {
         item.innerHTML = `
           <label class="ingredient-line">
-            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals * all_dishes[dish].options[ingredient]).toFixed(0) || ingredient} cals</span>
+            <span class="ingredient-name">${ingredient_dict[ingredient]?.name || ingredient} | $${(ingredient_dict[ingredient]?.price * all_dishes[dish].options[ingredient] * all_dishes[dish].amount).toFixed(0) || ingredient} | ${(ingredient_dict[ingredient]?.cals * all_dishes[dish].options[ingredient] * all_dishes[dish].amount).toFixed(0) || ingredient} cals</span>
             <input type="radio" name="extra-option-radio-${dish}" value="${ingredient}" onchange="updateTotal()" />
           </label>
         `;
