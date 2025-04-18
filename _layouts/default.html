@@ -1000,13 +1000,13 @@ const all_dishes = {
 
     const kcalTotals = optionKeys.map(key => {
       const amount = dish.options[key];
-      const kcalPerUnit = ingredients_dict[key]?.cals || 0;
+      const kcalPerUnit = ingredient_dict[key]?.cals || 0;
       return amount * kcalPerUnit;
     });
 
     const priceTotals = optionKeys.map(key => {
       const amount = dish.options[key];
-      const pricePerUnit = ingredients_dict[key]?.price || 0;
+      const pricePerUnit = ingredient_dict[key]?.price || 0;
       return amount * pricePerUnit;
     });
 
