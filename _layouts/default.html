@@ -988,6 +988,7 @@ const all_dishes = {
     };
     return {price:roundnum(pricesum*net), cals:calsum*net};
   }
+  
   function show_results(dish) {
     const optionKeys = Object.keys(dish.options);
 
@@ -1007,7 +1008,7 @@ const all_dishes = {
     const minPrice = Math.min(...priceTotals);
     
     let resulti = get_sums(dish.recipe, ingredient_dict, dish.amount);
-    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>Minima: | $${(resulti.price + (minPrice*dish.amount)).toFixed(0)} |  ${(resulti.cals + (minKcal*dish.amount)).toFixed(0)} cal |`;
+    document.getElementById(dish.html_id).innerHTML = `${dish.shown_name} <br>Minima: | $${roundnum(resulti.price + (minPrice*dish.amount)).toFixed(0)} |  ${(resulti.cals + (minKcal*dish.amount)).toFixed(0)} cal |`;
   }
 
   for (const name in all_dishes) {
