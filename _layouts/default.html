@@ -325,6 +325,13 @@
             <button class="dish-button" onclick="showBox(1, 'green_curry_empanada')">Add to Order</button>
           </div>
         </div>
+        <div class="fancy-border" style="border-bottom: none;">
+          <p id="barbacoa empanada"></p>
+          <div style="display: flex; justify-content: center; gap: 10px;">
+            <button class="dish-button" onclick="showBox(0, 'barbacoa_empanada')">Description</button>
+            <button class="dish-button" onclick="showBox(1, 'barbacoa_empanada')">Add to Order</button>
+          </div>
+        </div>
         <div class="fancy-border">
           <p id="custom empanada"></p>
           <div style="display: flex; justify-content: center; gap: 10px;">
@@ -477,7 +484,7 @@
     price: 775 / 1.2,
     cals: 44
   },
-  flour: { // Grams
+  flour: { // Grams, one cup is 120 grams
     name: 'Flour',
     price: 1000 / 1000.0,
     cals: 340 / 100
@@ -691,7 +698,21 @@
     name: "Basil",
     price: 1590/100.0,
     cals: 22/100.0,
-  }
+  },
+  yoghurt: { // Unit, one thing is 155
+    name: "Yoghurt",
+    price: 360,
+    cals: 113.2,
+  }, 
+  longaniza_barbacoa: { // Unit, one thing is 2 units
+    name: "Barbacoa Longaniza",
+    price: 3990/2.0,
+    cals: 22/100.0,
+  },
+  ketchup_curry: { // Ml, one thing is 300
+    name: "Curry Ketchup",
+    price: 3590/300.0,
+    cals: 137/100.0
 };
 
 const all_dishes = {
@@ -991,6 +1012,25 @@ const all_dishes = {
       cheese_mozzarella_fake:100,
       tomato:1.5,
       basil:30
+    },
+    options: {
+      none:1,
+    },
+    extras: {
+    }
+  },
+  barbacoa_empanada: {
+    shown_name:"THE KING: Barbacoa Longaniza with Curry Ketchup in Fancy Dough",
+    html_id:'barbacoa empanada',
+    description:`Possibly the greatest thing I've ever eaten. I use yoghurt in the dough and let it rise, making a much softer, thicker dough than a regular empanada. 
+    I fill it with a barbacoa longaniza and curry ketchup.`,
+    amount: 1,
+    recipe: {
+      flour: 60,
+      barbacoa_longaniza: 1,
+      yoghurt: 1,
+      olive_oil:15,
+      ketchup_curry:15
     },
     options: {
       none:1,
